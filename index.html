@@ -3,147 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>員工體檢資料範本網站</title>
+  <title>high-similarity-health-report</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f6f2;
-      color: #28251d;
-      line-height: 1.6;
+    :root{
+      --page-bg:#e8e5de;
+      --paper:#f7f7f3;
+      --ink:#1b1b1b;
+      --grid:#3a3a3a;
+      --soft:#6b6b6b;
     }
-
-    .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--page-bg);color:var(--ink);font-family:"Noto Serif TC","PMingLiU",serif}
+    .app{display:grid;grid-template-columns:350px 1fr;min-height:100vh}
+    .controls{background:#f2eee6;border-right:1px solid #cfc7bb;padding:24px;position:sticky;top:0;height:100vh;overflow:auto}
+    .controls h1{margin:0 0 10px;font-size:26px;line-height:1.2}
+    .controls p{font-size:13px;line-height:1.7;color:#5a554d;margin:0 0 16px}
+    .controls h2{font-size:15px;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid #cfc7bb}
+    label{display:block;font-size:13px;margin:0 0 6px}
+    input,select,button{width:100%;padding:10px 12px;border:1px solid #b8afa2;background:#fff;font:inherit;font-size:14px;margin-bottom:10px}
+    button{background:#232323;color:#fff;border:none;font-weight:700;cursor:pointer}
+    button.alt{background:#70685c}
+    .hint{font-size:12px;line-height:1.6;color:#665f54}
+    .stage{padding:24px;overflow:auto}
+    .sheet-stack{width:210mm;margin:0 auto}
+    .sheet{width:210mm;min-height:297mm;background:var(--paper);padding:13mm 10.5mm 10.5mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative}
+    .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.018),transparent 58%),linear-gradient(rgba(255,255,255,.35),rgba(0,0,0,.02));pointer-events:none;mix-blend-mode:multiply}
+    .title-band{margin:0 4mm 7px;border-top:1.8px solid #8d8d8d;border-bottom:1.8px solid #8d8d8d;background:linear-gradient(to bottom,#cfcfcf 0%,#e7e7e7 52%,#c9c9c9 100%);text-align:center;letter-spacing:.42em;font-size:31px;line-height:1.15;padding:4px 0 5px}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:13px;margin:0 8px 8px}
+    .meta-line{display:flex;align-items:flex-end;min-height:20px}
+    .meta-label{font-weight:700;white-space:nowrap;margin-right:4px}
+    .meta-value{flex:1;min-width:0}
+    table.report{width:100%;border-collapse:collapse;table-layout:fixed;background:#fbfbf8}
+    table.report th,table.report td{border:1.45px solid var(--grid);padding:2px 4px;vertical-align:middle;line-height:1.08;font-size:11.4px}
+    table.report th{font-weight:700;text-align:center;background:#f1f1ee}
+    .vcol{writing-mode:vertical-rl;text-orientation:upright;text-align:center;letter-spacing:1px;font-weight:700;background:#f4f4f0;width:23px;padding:4px 1px!important}
+    .item{font-weight:700}
+    .sub{display:block;font-size:10px;font-weight:600;margin-top:1px}
+    .center{text-align:center}
+    .small{font-size:10.5px}
+    .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
+    .checks{font-size:11.5px;line-height:1.75}
+    .checks div::before{content:"□";margin-right:7px}
+    .legend{font-size:10.5px;line-height:1.55;margin-top:6px}
+    .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
+    .telbox{border:1.45px solid var(--grid);padding:5px 8px;text-align:center;font-size:11.5px;background:#f7f7f3}
+    .sigline{display:flex;justify-content:space-between;margin-top:12px;font-size:11px;color:#333}
+    @media print{
+      body{background:#fff}
+      .controls{display:none}
+      .app{display:block}
+      .stage{padding:0}
+      .sheet-stack{width:auto}
+      .sheet{box-shadow:none;margin:0;width:210mm;min-height:297mm;page-break-after:always}
+      .sheet:last-child{page-break-after:auto}
+      @page{size:A4 portrait;margin:0}
     }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #d4d1ca;
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 32px;
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .stat {
-      background: #ffffff;
-      border: 1px solid #d4d1ca;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 32px;
-      margin-bottom: 8px;
-      color: #01696f;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-    }
-
-    th, td {
-      border-bottom: 1px solid #e7e3dc;
-      padding: 12px;
-      text-align: left;
-    }
-
-    th {
-      background: #f3f0ec;
-    }
-
-    @media (max-width: 700px) {
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 26px;
-      }
+    @media (max-width:1200px){
+      .app{grid-template-columns:1fr}
+      .controls{position:relative;height:auto;border-right:none;border-bottom:1px solid #cfc7bb}
+      .stage{padding:16px}
+      .sheet-stack{width:100%;overflow:auto}
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>員工體檢資料展示網站</h1>
-      <p>這是一個公開展示用的範本網站，目前使用的是假資料，之後可以再加入 CSV 匯入與自動生成表格功能。</p>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <strong>128</strong>
-        總筆數
-      </div>
-      <div class="stat">
-        <strong>96</strong>
-        正常
-      </div>
-      <div class="stat">
-        <strong>32</strong>
-        需追蹤 / 複檢
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>資料總覽</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>員工編號</th>
-            <th>部門</th>
-            <th>檢查年月</th>
-            <th>結果狀態</th>
-            <th>下次到期</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>EMP-001</td>
-            <td>行政部</td>
-            <td>2026-06</td>
-            <td>正常</td>
-            <td>2027-06</td>
-          </tr>
-          <tr>
-            <td>EMP-014</td>
-            <td>工程部</td>
-            <td>2026-05</td>
-            <td>需追蹤</td>
-            <td>2026-11</td>
-          </tr>
-          <tr>
-            <td>EMP-027</td>
-            <td>業務部</td>
-            <td>2026-04</td>
-            <td>建議複檢</td>
-            <td>2026-08</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</body>
-</html>
+<div class="app">
+  <aside class="controls">
+    <h1>高相似版體檢報告</h1>
+    <p>這版做成接近你提供範本 A 的雙頁灰階健檢單視覺，但仍是重新排版繪製，不是掃描底圖。你可直接貼上到 GitHub 的 HTML 使用。</p>
+    <h2>基本資料</h2>
+    <label>姓名</label>
+    <input id="name" value="王小雯">
+    <label>性別</label>
