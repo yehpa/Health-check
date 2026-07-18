@@ -25,38 +25,38 @@
     button.alt{background:#70685c}
     .hint{font-size:12px;line-height:1.6;color:#665f54}
     .stage{padding:24px;overflow:auto}
-    .sheet-stack{width:210mm;margin:0 auto}
-    .sheet{width:210mm;min-height:297mm;background:var(--paper);padding:13mm 10.5mm 10.5mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative}
+    .sheet-stack{width:210mm;margin:0 auto;display:block}
+    .sheet{width:190mm;min-height:277mm;background:var(--paper);padding:9mm 8mm 8mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative;overflow:hidden}
     .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.018),transparent 58%),linear-gradient(rgba(255,255,255,.35),rgba(0,0,0,.02));pointer-events:none;mix-blend-mode:multiply}
-    .title-band{margin:0 4mm 7px;border-top:1.8px solid #8d8d8d;border-bottom:1.8px solid #8d8d8d;background:linear-gradient(to bottom,#cfcfcf 0%,#e7e7e7 52%,#c9c9c9 100%);text-align:center;letter-spacing:.42em;font-size:31px;line-height:1.15;padding:4px 0 5px}
-    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:13px;margin:0 8px 8px}
+    .title-band{margin:0 2mm 6px;border-top:2px solid #8d8d8d;border-bottom:2px solid #8d8d8d;background:linear-gradient(to bottom,#c3c3c3 0%,#e4e4e4 50%,#c8c8c8 100%);text-align:center;letter-spacing:.28em;font-size:36px;line-height:1.05;padding:3px 0 4px;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti",serif;font-weight:700}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:14px;margin:0 6px 7px}
     .meta-line{display:flex;align-items:flex-end;min-height:20px}
     .meta-label{font-weight:700;white-space:nowrap;margin-right:4px}
     .meta-value{flex:1;min-width:0}
     table.report{width:100%;border-collapse:collapse;table-layout:fixed;background:#fbfbf8;border:2.8px solid #222}
-    table.report th,table.report td{border:1.15px solid var(--grid);padding:2px 4px;vertical-align:middle;line-height:1.08;font-size:11.4px;background:#fbfbf7}
+    table.report th,table.report td{border:1.15px solid var(--grid);padding:3px 4px;vertical-align:middle;line-height:1.12;font-size:12.8px;background:#fbfbf7}
     table.report th{font-weight:700;text-align:center;background:#d8d8d2}
     .vcol{writing-mode:vertical-rl;text-orientation:upright;text-align:center;letter-spacing:1px;font-weight:700;background:#e2e2db;width:23px;padding:4px 1px!important}
     .item{font-weight:700}
-    .sub{display:block;font-size:10px;font-weight:600;margin-top:1px}
+    .sub{display:block;font-size:11px;font-weight:600;margin-top:1px}
     .center{text-align:center}
-    .small{font-size:10.5px}
+    .small{font-size:12px}
     .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
     .checks{font-size:11.5px;line-height:1.75}
     .checks div::before{content:"";margin-right:0}
-    .legend{font-size:10.5px;line-height:1.55;margin-top:6px}
+    .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
     .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
     .telbox{border:1.45px solid var(--grid);padding:5px 8px;text-align:center;font-size:11.5px;background:#f7f7f3}.telbox.double{border:3px double #2b2b2b}
-    .sigline{display:flex;justify-content:space-between;margin-top:12px;font-size:11px;color:#333}
+    .sigline{display:flex;justify-content:space-between;gap:16px;margin-top:8px;font-size:12px;color:#333;border-top:1px solid #666;padding-top:5px}
     @media print{
       body{background:#fff}
       .controls{display:none}
       .app{display:block}
       .stage{padding:0}
       .sheet-stack{width:auto}
-      .sheet{box-shadow:none;margin:0;width:210mm;min-height:297mm;page-break-after:always}
+      .sheet{box-shadow:none;margin:0 auto;width:190mm;min-height:277mm;page-break-after:always;break-after:page}
       .sheet:last-child{page-break-after:auto}
-      @page{size:A4 portrait;margin:0}
+      @page{size:A4 portrait;margin:10mm}
     }
     @media (max-width:1200px){
       .app{grid-template-columns:1fr}
@@ -111,7 +111,7 @@
           <tbody id="tbody1"></tbody>
         </table>
         <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
-        <div class="footer-grid">
+        <div class="footer-grid" style="margin-top:8px;">
           <div>
             <div class="checks">
               <div>以上檢查項目均明顯異常。</div>
@@ -149,7 +149,7 @@
               <div>□ 請注意飲食定期追蹤預防檢查。</div>
               <div>□ 請進一步到醫院評估治療。</div>
             </div>
-            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加加注意。</div>
+            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
           </div>
           <div>
             <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
