@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>員工體檢資料範本網站</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f6f2;
+      color: #28251d;
+      line-height: 1.6;
+    }
 
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #d4d1ca;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat {
+      background: #ffffff;
+      border: 1px solid #d4d1ca;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 8px;
+      color: #01696f;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      border-bottom: 1px solid #e7e3dc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f3f0ec;
+    }
+
+    @media (max-width: 700px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>員工體檢資料展示網站</h1>
+      <p>這是一個公開展示用的範本網站，目前使用的是假資料，之後可以再加入 CSV 匯入與自動生成表格功能。</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>128</strong>
+        總筆數
+      </div>
+      <div class="stat">
+        <strong>96</strong>
+        正常
+      </div>
+      <div class="stat">
+        <strong>32</strong>
+        需追蹤 / 複檢
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>資料總覽</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>員工編號</th>
+            <th>部門</th>
+            <th>檢查年月</th>
+            <th>結果狀態</th>
+            <th>下次到期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EMP-001</td>
+            <td>行政部</td>
+            <td>2026-06</td>
+            <td>正常</td>
+            <td>2027-06</td>
+          </tr>
+          <tr>
+            <td>EMP-014</td>
+            <td>工程部</td>
+            <td>2026-05</td>
+            <td>需追蹤</td>
+            <td>2026-11</td>
+          </tr>
+          <tr>
+            <td>EMP-027</td>
+            <td>業務部</td>
+            <td>2026-04</td>
+            <td>建議複檢</td>
+            <td>2026-08</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
