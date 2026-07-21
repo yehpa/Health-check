@@ -42,7 +42,7 @@
     .center{text-align:center}
     .small{font-size:12px}
     .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
-    .checks{font-size:11.5px;line-height:1.75}
+    .checks{font-size:12px;line-height:1.7;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti","Noto Serif TC",serif}
     .checks div::before{content:"";margin-right:0}
     .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
     .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
@@ -110,7 +110,7 @@
           </thead>
           <tbody id="tbody1"></tbody>
         </table>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
+        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div>
         <div class="footer-grid" style="margin-top:8px;">
           <div>
             <div class="checks">
@@ -145,11 +145,11 @@
             <div class="small">胸部 X 光檢查：無明顯異常</div>
             <div class="small">皮膚疥蟲檢查：無明顯異常</div>
             <div class="checks" style="margin-top:8px;">
-              <div style="font-weight:700;">☑ 以上檢查之項目均無明顯異常。</div>
-              <div>□ 請注意飲食定期追蹤預防檢查。</div>
-              <div>□ 請進一步到醫院評估治療。</div>
+              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;position:relative;"><span style="position:absolute;inset:1px;background:#8f8f8f;"></span></span>以上檢查之項目均無明顯異常。</div>
+              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請注意飲食定期追蹤預防檢查。</div>
+              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請進一步到醫院評估治療。</div>
             </div>
-            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
+            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名</span><span>簽章及證書字號</span></div>
           </div>
           <div>
             <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
@@ -246,7 +246,6 @@ const page2Right = [
   {g:'', n:'寄生蟲', f:fixed.parasite, r:''},
   {g:'其他', n:'胸部X光檢查', f:'無明顯異常', r:'無明顯異常'},
   {g:'', n:'皮膚疥蟲檢查', f:'無明顯異常', r:'無明顯異常'},
-  {g:'', n:'健檢醫師姓名', f:'陳志明醫師', r:''}
 ];
 
 const $ = id => document.getElementById(id);
