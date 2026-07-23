@@ -42,7 +42,7 @@
     .center{text-align:center}
     .small{font-size:12px}
     .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
-    .checks{font-size:12px;line-height:1.7;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti","Noto Serif TC",serif}
+    .checks{font-size:11.5px;line-height:1.75}
     .checks div::before{content:"";margin-right:0}
     .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
     .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
@@ -110,7 +110,7 @@
           </thead>
           <tbody id="tbody1"></tbody>
         </table>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div>
+        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
         <div class="footer-grid" style="margin-top:8px;">
           <div>
             <div class="checks">
@@ -145,11 +145,11 @@
             <div class="small">胸部 X 光檢查：無明顯異常</div>
             <div class="small">皮膚疥蟲檢查：無明顯異常</div>
             <div class="checks" style="margin-top:8px;">
-              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;position:relative;"><span style="position:absolute;inset:1px;background:#8f8f8f;"></span></span>以上檢查之項目均無明顯異常。</div>
-              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請注意飲食定期追蹤預防檢查。</div>
-              <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請進一步到醫院評估治療。</div>
+              <div style="font-weight:700;">☑ 以上檢查之項目均無明顯異常。</div>
+              <div>□ 請注意飲食定期追蹤預防檢查。</div>
+              <div>□ 請進一步到醫院評估治療。</div>
             </div>
-            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名</span><span>簽章及證書字號</span></div>
+            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
           </div>
           <div>
             <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
@@ -162,19 +162,10 @@
 </div>
 
 <script>
-<script>
 const fixed = {
-  colorBlind:'正常',
-  urineProtein:'陰性（－）',
-  urineBlood:'陰性（－）',
-  urineSugar:'陰性（－）',
-  hbsag:'陰性（－）',
-  hbsab:'陽性（＋）',
-  hcv:'陰性（－）',
-  vdrl:'陰性（－）',
-  bacillary:'no growth',
-  amoeba:'not found',
-  parasite:'not found'
+  colorBlind:'正常', urineProtein:'陰性（－）', urineBlood:'陰性（－）', urineSugar:'陰性（－）',
+  hbsag:'陰性（－）', hbsab:'陽性（＋）', hcv:'陰性（－）', vdrl:'陰性（－）',
+  bacillary:'no growth', amoeba:'not found', parasite:'not found'
 };
 
 const page1Left = [
@@ -197,7 +188,6 @@ const page1Left = [
   {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'%', r:'10.0-45.0', d:1, min:14.0, max:36.0},
   {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'%', r:'0'}
 ];
-
 const page1Right = [
   {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', u:'U/L', r:'35-141', d:0, min:45, max:122},
   {g:'', n:'T-P', s:'總蛋白量', k:'tp', u:'mg/dl', r:'6.0-8.7', d:1, min:6.3, max:8.1},
@@ -218,7 +208,6 @@ const page1Right = [
   {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'未感染', u:'+/-', r:'未感染'},
   {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
 ];
-
 const page2Left = [
   {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', r:'標準值 90-140', d:0, min:100, max:128},
   {g:'', n:'血壓（舒張壓）', k:'dbp', r:'標準值 60-90', d:0, min:64, max:84},
@@ -235,10 +224,9 @@ const page2Left = [
   {g:'', n:'Unc Acid', s:'尿酸', k:'uric', u:'mg/dl', r:'2.0-7.0', d:1, min:2.9, max:6.3},
   {g:'血脂肪', n:'TG', s:'中性脂肪', k:'tg', u:'mg/dl', r:'30-150', d:0, min:45, max:130},
   {g:'', n:'T-CHO', s:'總膽固醇', k:'cho', u:'mg/dl', r:'100-200', d:0, min:126, max:194},
-  {g:'血糖', n:'AC', s:'飯前血糖', f:'', u:'mg/dl', r:'70-110'},
-  {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
+  {g:'血糖', n:'AC', s:'飯前血糖', k:'ac', u:'mg/dl', r:'70-110', d:0, min:77, max:104},
+  {g:'', n:'PC', s:'飯後血糖', k:'pc', u:'mg/dl', r:'90-120', d:0, min:95, max:116}
 ];
-
 const page2Right = [
   {g:'視力檢查', n:'右眼裸／左眼裸', k:'vision', r:'身高體重 / 聽力檢查'},
   {g:'', n:'色盲檢查', f:fixed.colorBlind, r:'正常'},
@@ -248,163 +236,57 @@ const page2Right = [
   {g:'', n:'比重（SP,GR）', k:'spgr', r:'1.000-1.030', d:3, min:1.008, max:1.025},
   {g:'', n:'尿膽素原（Uro）', f:'陰性（－）', r:'陰性（－）'},
   {g:'肝功能檢查', n:'SGOT', k:'sgot', u:'U/ml', r:'5-40', d:0, min:10, max:34},
-  {g:'肝炎病毒', n:'B型肝炎表面抗原', f:fixed.hbsag, u:'+/-', r:'未帶原 / 帶原者'},
-  {g:'', n:'B型肝炎表面抗體', f:fixed.hbsab, u:'+/-', r:'無抗體 / 有抗體'},
-  {g:'', n:'B型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
-  {g:'', n:'HCV C型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
-  {g:'', n:'VDRL', s:'梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
+  {g:'肝炎病毒', n:'B 型肝炎表面抗原', f:fixed.hbsag, u:'+/-', r:'未帶原 / 帶原者'},
+  {g:'', n:'B 型肝炎表面抗體', f:fixed.hbsab, u:'+/-', r:'無抗體 / 有抗體'},
+  {g:'', n:'B 型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
+  {g:'', n:'HCV C 型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
+  {g:'', n:'VDRL 梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
   {g:'糞便常規', n:'桿菌性痢疾', f:fixed.bacillary, r:''},
   {g:'', n:'阿米巴性痢疾', f:fixed.amoeba, r:''},
   {g:'', n:'寄生蟲', f:fixed.parasite, r:''},
-  {g:'', n:'', f:'', r:''}
+  {g:'其他', n:'胸部X光檢查', f:'無明顯異常', r:'無明顯異常'},
+  {g:'', n:'皮膚疥蟲檢查', f:'無明顯異常', r:'無明顯異常'},
+  {g:'', n:'健檢醫師姓名', f:'陳志明醫師', r:''}
 ];
 
 const $ = id => document.getElementById(id);
-const inputs = {
-  name: $("name"),
-  gender: $("gender"),
-  birth: $("birth"),
-  exam: $("exam")
-};
-
-function seedFromString(str){
-  let h = 2166136261;
-  for(let i=0;i<str.length;i++){
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function mulberry32(a){
-  return function(){
-    let t = a += 0x6D2B79F5;
-    t = Math.imul(t ^ t >>> 15, t | 1);
-    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
-  };
-}
-
-function formatDateTW(v){
-  if(!v) return '　年　月　日';
-  const d = new Date(v + 'T00:00:00');
-  return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`;
-}
-
-function groupInfo(items){
-  const map = {};
-  for(let i=0;i<items.length;i++){
-    if(items[i].g){
-      let count = 1;
-      for(let j=i+1;j<items.length && !items[j].g;j++) count++;
-      map[i] = { name: items[i].g, count };
-    }
-  }
-  return map;
-}
-
-function val(item, rand){
-  if(item.f !== undefined) return item.f;
-
-  if(item.k === 'vision'){
-    const r = (0.7 + rand()*0.3).toFixed(1);
-    const l = (0.7 + rand()*0.3).toFixed(1);
-    const h = Math.round(156 + rand()*14);
-    const w = Math.round(48 + rand()*17);
+const inputs = {name:$("name"), gender:$("gender"), birth:$("birth"), exam:$("exam")};
+function seedFromString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+function formatDateTW(v){if(!v)return '　年　月　日';const d=new Date(v+'T00:00:00');return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`}
+function groupInfo(items){const map={};for(let i=0;i<items.length;i++){if(items[i].g){let count=1;for(let j=i+1;j<items.length&&!items[j].g;j++)count++;map[i]={name:items[i].g,count}}}return map}
+function val(item,rand){
+  if(item.f!==undefined) return item.f;
+  if(item.k==='vision'){
+    const r=(0.7+rand()*0.3).toFixed(1), l=(0.7+rand()*0.3).toFixed(1), h=Math.round(156+rand()*14), w=Math.round(48+rand()*17);
     return `右眼裸 ${r} / 左眼裸 ${l} / 身高 ${h} / 體重 ${w}`;
   }
-
-  const v = item.min + (item.max - item.min) * rand();
-  return item.d === 0 ? String(Math.round(v)) : v.toFixed(item.d);
+  const v=item.min+(item.max-item.min)*rand();
+  return item.d===0 ? String(Math.round(v)) : v.toFixed(item.d);
 }
-
-function renderMeta(){
-  ['1','2'].forEach(n => {
-    $("name"+n).textContent = inputs.name.value.trim();
-    $("gender"+n).textContent = inputs.gender.value;
-    $("birth"+n).textContent = formatDateTW(inputs.birth.value);
-    $("exam"+n).textContent = formatDateTW(inputs.exam.value);
-  });
-}
-
-function build(targetId, left, right, seedText){
-  const tb = $(targetId);
-  tb.innerHTML = '';
-
-  const lg = groupInfo(left);
-  const rg = groupInfo(right);
-  const rand = mulberry32(seedFromString(seedText + targetId));
-  const rows = Math.max(left.length, right.length);
-
+function renderMeta(){['1','2'].forEach(n=>{ $("name"+n).textContent=inputs.name.value.trim(); $("gender"+n).textContent=inputs.gender.value; $("birth"+n).textContent=formatDateTW(inputs.birth.value); $("exam"+n).textContent=formatDateTW(inputs.exam.value); })}
+function build(targetId,left,right,seedText){
+  const tb=$(targetId); tb.innerHTML='';
+  const lg=groupInfo(left), rg=groupInfo(right), rand=mulberry32(seedFromString(seedText+targetId));
+  const rows=Math.max(left.length,right.length);
   for(let i=0;i<rows;i++){
-    const l = left[i] || {n:'', s:'', f:'', u:'', r:''};
-    const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
-    const tr = document.createElement('tr');
-
-    if(lg[i]){
-      const td = document.createElement('td');
-      td.className = 'vcol';
-      td.rowSpan = lg[i].count;
-      td.textContent = lg[i].name;
-      tr.appendChild(td);
-    }
-
-    const l1 = document.createElement('td');
-    l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
-
-    const l2 = document.createElement('td');
-    l2.className = 'center';
-    l2.textContent = val(l, rand);
-
-    const l3 = document.createElement('td');
-    l3.className = 'center';
-    l3.textContent = `${l.u ? l.u + ' ' : ''}${l.r || ''}`.trim();
-
-    tr.append(l1, l2, l3);
-
-    if(rg[i]){
-      const td = document.createElement('td');
-      td.className = 'vcol';
-      td.rowSpan = rg[i].count;
-      td.textContent = rg[i].name;
-      tr.appendChild(td);
-    }
-
-    const r1 = document.createElement('td');
-    r1.innerHTML = `<span class="item">${r.n}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
-
-    const r2 = document.createElement('td');
-    r2.className = 'center';
-    r2.textContent = val(r, rand);
-
-    const r3 = document.createElement('td');
-    r3.className = 'center';
-    r3.textContent = `${r.u ? r.u + ' ' : ''}${r.r || ''}`.trim();
-
-    tr.append(r1, r2, r3);
-    tb.appendChild(tr);
+    const l=left[i]||{n:'',s:'',f:'',u:'',r:''};
+    const r=right[i]||{n:'',s:'',f:'',u:'',r:''};
+    const tr=document.createElement('tr');
+    if(lg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=lg[i].count;td.textContent=lg[i].name;tr.appendChild(td)}
+    const l1=document.createElement('td'); l1.innerHTML=`<span class="item">${l.n}</span>${l.s?`<span class="sub">${l.s}</span>`:''}`;
+    const l2=document.createElement('td'); l2.className='center'; l2.textContent=val(l,rand);
+    const l3=document.createElement('td'); l3.className='center'; l3.textContent=`${l.u?l.u+' ':''}${l.r||''}`.trim();
+    tr.append(l1,l2,l3);
+    if(rg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=rg[i].count;td.textContent=rg[i].name;tr.appendChild(td)}
+    const r1=document.createElement('td'); r1.innerHTML=`<span class="item">${r.n}</span>${r.s?`<span class="sub">${r.s}</span>`:''}`;
+    const r2=document.createElement('td'); r2.className='center'; r2.textContent=val(r,rand);
+    const r3=document.createElement('td'); r3.className='center'; r3.textContent=`${r.u?r.u+' ':''}${r.r||''}`.trim();
+    tr.append(r1,r2,r3); tb.appendChild(tr);
   }
 }
-
-function regenerate(){
-  renderMeta();
-  const seed = [
-    inputs.name.value,
-    inputs.gender.value,
-    inputs.birth.value,
-    inputs.exam.value
-  ].join('|');
-
-  build('tbody1', page1Left, page1Right, seed);
-  build('tbody2', page2Left, page2Right, seed + '-2');
-}
-
-$("regen").addEventListener('click', regenerate);
-$("printBtn").addEventListener('click', () => window.print());
-Object.values(inputs).forEach(el => el.addEventListener('input', renderMeta));
-
-regenerate();
-</script>
+function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
+$('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
 </script>
 </body>
 </html>
