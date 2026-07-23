@@ -44,6 +44,26 @@
     .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
     .checks{font-size:11.5px;line-height:1.75}
     .checks div::before{content:"";margin-right:0}
+    .choice{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin:2px 0;
+  font-size:11.5px;
+  line-height:1.75;
+}
+.choice-box{
+  width:12px;
+  height:12px;
+  min-width:12px;
+  border:1.4px solid #333;
+  display:inline-block;
+  margin-top:2px;
+  background:#fff;
+}
+.choice.selected .choice-box{
+  background:#d8cc00;
+}
     .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
     .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
     .telbox{border:1.45px solid var(--grid);padding:5px 8px;text-align:center;font-size:11.5px;background:#f7f7f3}.telbox.double{border:3px double #2b2b2b}
@@ -144,11 +164,11 @@
           <div>
             <div class="small">胸部 X 光檢查：無明顯異常</div>
             <div class="small">皮膚疥蟲檢查：無明顯異常</div>
-            <div class="checks" style="margin-top:8px;">
-              <div style="font-weight:700;">☑ 以上檢查之項目均無明顯異常。</div>
-              <div>□ 請注意飲食定期追蹤預防檢查。</div>
-              <div>□ 請進一步到醫院評估治療。</div>
-            </div>
+           <div class="checks" style="margin-top:8px;">
+  <div class="choice selected"><span class="choice-box"></span>以上檢查之項目均無明顯異常。</div>
+  <div class="choice"><span class="choice-box"></span>請注意飲食定期追蹤預防檢查。</div>
+  <div class="choice"><span class="choice-box"></span>請進一步到醫院評估治療。</div>
+</div>
             <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
           </div>
           <div>
@@ -163,9 +183,9 @@
 
 <script>
 const fixed = {
-  colorBlind:'正常', urineProtein:'陰性（－）', urineBlood:'陰性（－）', urineSugar:'陰性（－）',
-  hbsag:'陰性（－）', hbsab:'陽性（＋）', hcv:'陰性（－）', vdrl:'陰性（－）',
-  bacillary:'no growth', amoeba:'not found', parasite:'not found'
+  colorBlind:'', urineProtein:'', urineBlood:'', urineSugar:'',
+  hbsag:'', hbsab:'', hcv:'', vdrl:'',
+  bacillary:'', amoeba:'', parasite:''
 };
 
 const page1Left = [
@@ -203,50 +223,46 @@ const page1Right = [
   {g:'血管指數', n:'HDL', s:'高密度膽固醇', k:'hdl', u:'mg/ml', r:'↑30', d:0, min:41, max:68},
   {g:'', n:'LDL', s:'低密度膽固醇', k:'ldl', u:'mg/ml', r:'↓130', d:0, min:72, max:122},
   {g:'', n:'Risk', s:'中風指數', k:'risk', u:'%', r:'1.5-5.5', d:1, min:1.9, max:4.7},
-  {g:'血清學檢查', n:'CRP', s:'炎症反應', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
-  {g:'', n:'RA', s:'類風濕關節炎', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
-  {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'未感染', u:'+/-', r:'未感染'},
+  {g:'血清學檢查', n:'CRP', s:'炎症反應', f:'', u:'+/-', r:'陰性(－)'},
+  {g:'', n:'RA', s:'類風濕關節炎', f:'', u:'+/-', r:'陰性(－)'},
+  {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'', u:'+/-', r:'未感染'},
   {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
-];
 const page2Left = [
-  {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', r:'標準值 90-140', d:0, min:100, max:128},
-  {g:'', n:'血壓（舒張壓）', k:'dbp', r:'標準值 60-90', d:0, min:64, max:84},
-  {g:'', n:'脈搏指數', k:'pulse', r:'平均值 60-100', d:0, min:65, max:90},
-  {g:'', n:'身體質量指數 BMI', k:'bmi', r:'平均值 18-24', d:1, min:18.4, max:23.5},
-  {g:'尿液檢查', n:'尿蛋白（Protein）', f:fixed.urineProtein, r:'陰性（－）'},
-  {g:'', n:'尿潛血（OB）', f:fixed.urineBlood, r:'陰性（－）'},
-  {g:'', n:'尿糖（Glucose）', f:fixed.urineSugar, r:'陰性（－）'},
-  {g:'', n:'酸鹼值（PH）', k:'ph', r:'5.0-8.0', d:1, min:5.7, max:7.2},
-  {g:'', n:'酮體（Ket）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'腎功能', n:'SGPT', s:'肝功能檢查', k:'sgpt', u:'U/ml', r:'5-42', d:0, min:11, max:35},
-  {g:'', n:'BUN', s:'尿素氮', k:'bun', u:'mg/dl', r:'4.7-23', d:1, min:6.8, max:19.4},
-  {g:'', n:'Creatinine', s:'肌酸酐', k:'cr', u:'mg/dl', r:'0.1-1.5', d:1, min:0.5, max:1.2},
-  {g:'', n:'Unc Acid', s:'尿酸', k:'uric', u:'mg/dl', r:'2.0-7.0', d:1, min:2.9, max:6.3},
-  {g:'血脂肪', n:'TG', s:'中性脂肪', k:'tg', u:'mg/dl', r:'30-150', d:0, min:45, max:130},
-  {g:'', n:'T-CHO', s:'總膽固醇', k:'cho', u:'mg/dl', r:'100-200', d:0, min:126, max:194},
-  {g:'血糖', n:'AC', s:'飯前血糖', k:'ac', u:'mg/dl', r:'70-110', d:0, min:77, max:104},
-  {g:'', n:'PC', s:'飯後血糖', k:'pc', u:'mg/dl', r:'90-120', d:0, min:95, max:116}
+  {g:'一般檢查', n:'血壓（收縮壓）', f:'', r:'標準值 90-140'},
+  {g:'', n:'血壓（舒張壓）', f:'', r:'標準值 60-90'},
+  {g:'', n:'脈搏指數', f:'', r:'平均值 60-100'},
+  {g:'', n:'身體質量指數 BMI', f:'', r:'平均值 18-24'},
+  {g:'尿液檢查', n:'尿蛋白（Protein）', f:'', r:'陰性（－）'},
+  {g:'', n:'尿潛血（OB）', f:'', r:'陰性（－）'},
+  {g:'', n:'尿糖（Glucose）', f:'', r:'陰性（－）'},
+  {g:'', n:'酸鹼值（PH）', f:'', r:'5.0-8.0'},
+  {g:'', n:'酮體（Ket）', f:'', r:'陰性（－）'},
+  {g:'腎功能', n:'SGPT', s:'肝功能檢查', f:'', u:'U/ml', r:'5-42'},
+  {g:'', n:'BUN', s:'尿素氮', f:'', u:'mg/dl', r:'4.7-23'},
+  {g:'', n:'Creatinine', s:'肌酸酐', f:'', u:'mg/dl', r:'0.1-1.5'},
+  {g:'', n:'Unc Acid', s:'尿酸', f:'', u:'mg/dl', r:'2.0-7.0'},
+  {g:'血脂肪', n:'TG', s:'中性脂肪', f:'', u:'mg/dl', r:'30-150'},
+  {g:'', n:'T-CHO', s:'總膽固醇', f:'', u:'mg/dl', r:'100-200'},
+  {g:'血糖', n:'AC', s:'飯前血糖', f:'', u:'mg/dl', r:'70-110'},
+  {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
 ];
 const page2Right = [
-  {g:'視力檢查', n:'右眼裸／左眼裸', k:'vision', r:'身高體重 / 聽力檢查'},
-  {g:'', n:'色盲檢查', f:fixed.colorBlind, r:'正常'},
-  {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'維他命 C', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'尿膽紅素（Bil）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'比重（SP,GR）', k:'spgr', r:'1.000-1.030', d:3, min:1.008, max:1.025},
-  {g:'', n:'尿膽素原（Uro）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'肝功能檢查', n:'SGOT', k:'sgot', u:'U/ml', r:'5-40', d:0, min:10, max:34},
-  {g:'肝炎病毒', n:'B 型肝炎表面抗原', f:fixed.hbsag, u:'+/-', r:'未帶原 / 帶原者'},
-  {g:'', n:'B 型肝炎表面抗體', f:fixed.hbsab, u:'+/-', r:'無抗體 / 有抗體'},
-  {g:'', n:'B 型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
-  {g:'', n:'HCV C 型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
-  {g:'', n:'VDRL 梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
-  {g:'糞便常規', n:'桿菌性痢疾', f:fixed.bacillary, r:''},
-  {g:'', n:'阿米巴性痢疾', f:fixed.amoeba, r:''},
-  {g:'', n:'寄生蟲', f:fixed.parasite, r:''},
-  {g:'其他', n:'胸部X光檢查', f:'無明顯異常', r:'無明顯異常'},
-  {g:'', n:'皮膚疥蟲檢查', f:'無明顯異常', r:'無明顯異常'},
-  {g:'', n:'健檢醫師姓名', f:'陳志明醫師', r:''}
+  {g:'視力檢查', n:'右眼裸／左眼裸', f:'', r:'身高體重 / 聽力檢查'},
+  {g:'', n:'色盲檢查', f:'', r:'正常'},
+  {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'', r:'陰性（－）'},
+  {g:'', n:'維他命 C', f:'', r:'陰性（－）'},
+  {g:'', n:'尿膽紅素（Bil）', f:'', r:'陰性（－）'},
+  {g:'', n:'比重（SP,GR）', f:'', r:'1.000-1.030'},
+  {g:'', n:'尿膽素原（Uro）', f:'', r:'陰性（－）'},
+  {g:'肝功能檢查', n:'SGOT', f:'', u:'U/ml', r:'5-40'},
+  {g:'肝炎病毒', n:'B 型肝炎表面抗原', f:'', u:'+/-', r:'未帶原 / 帶原者'},
+  {g:'', n:'B 型肝炎表面抗體', f:'', u:'+/-', r:'無抗體 / 有抗體'},
+  {g:'', n:'B 型肝炎核心抗體', f:'', u:'+/-', r:'陰性（－）'},
+  {g:'', n:'HCV C 型肝炎', f:'', u:'+/-', r:'未感染 / 已感染'},
+  {g:'', n:'VDRL 梅毒反應', f:'', u:'+/-', r:'陰性（－）'},
+  {g:'糞便常規', n:'桿菌性痢疾', f:'', r:''},
+  {g:'', n:'阿米巴性痢疾', f:'', r:''},
+  {g:'', n:'寄生蟲', f:'', r:''}
 ];
 
 const $ = id => document.getElementById(id);
