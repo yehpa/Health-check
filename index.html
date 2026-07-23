@@ -162,10 +162,19 @@
 </div>
 
 <script>
+<script>
 const fixed = {
-  colorBlind:'正常', urineProtein:'陰性（－）', urineBlood:'陰性（－）', urineSugar:'陰性（－）',
-  hbsag:'陰性（－）', hbsab:'陽性（＋）', hcv:'陰性（－）', vdrl:'陰性（－）',
-  bacillary:'no growth', amoeba:'not found', parasite:'not found'
+  colorBlind:'正常',
+  urineProtein:'陰性（－）',
+  urineBlood:'陰性（－）',
+  urineSugar:'陰性（－）',
+  hbsag:'陰性（－）',
+  hbsab:'陽性（＋）',
+  hcv:'陰性（－）',
+  vdrl:'陰性（－）',
+  bacillary:'no growth',
+  amoeba:'not found',
+  parasite:'not found'
 };
 
 const page1Left = [
@@ -177,37 +186,39 @@ const page1Left = [
   {g:'', n:'MCH', s:'平均紅血血球血紅素量', k:'mch', u:'pg', r:'27-34', d:1, min:27.6, max:33.0},
   {g:'', n:'MCHC', s:'球紅血球示濃度', k:'mchc', u:'g/dl', r:'31-36', d:1, min:31.7, max:35.2},
   {g:'', n:'Platelet', s:'血小板', k:'platelet', u:'K/cumm', r:'140-440', d:0, min:175, max:388},
-  {g:'', n:'Neut', s:'嗜中性白血球', k:'neut', u:'', r:'', d:1, min:49, max:70},
-  {g:'', n:'LYM%', s:'淋巴百分比', k:'lym', u:'', r:'', d:1, min:21, max:39},
-  {g:'', n:'MONO%', s:'單核球百分比', k:'mono', u:'', r:'', d:1, min:2, max:8},
-  {g:'', n:'Eosin', s:'嗜酸性白血球', k:'eosin', u:'', r:'', d:1, min:0.3, max:4.5},
-  {g:'', n:'Basc', s:'嗜鹼性白血球', k:'basc', u:'', r:'', d:1, min:0.1, max:0.7},
-  {g:'', n:'RDW', s:'血小板平均分佈', k:'rdw', u:'', r:'', d:1, min:11.2, max:15.4},
-  {g:'', n:'PDW', s:'血小板平均寬度', k:'pdw', u:'', r:'', d:1, min:11.4, max:18.6},
-  {g:'', n:'MPV', s:'平均血小板體積', k:'mpv', u:'', r:'', d:1, min:7.1, max:11.3},
-  {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'', r:'', d:1, min:14.0, max:36.0},
-  {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'', r:0'}
+  {g:'', n:'Neut', s:'嗜中性白血球', k:'neut', u:'%', r:'45-75', d:1, min:49, max:70},
+  {g:'', n:'LYM%', s:'淋巴百分比', k:'lym', u:'%', r:'18-45', d:1, min:21, max:39},
+  {g:'', n:'MONO%', s:'單核球百分比', k:'mono', u:'%', r:'0-10', d:1, min:2, max:8},
+  {g:'', n:'Eosin', s:'嗜酸性白血球', k:'eosin', u:'%', r:'0-6', d:1, min:0.3, max:4.5},
+  {g:'', n:'Basc', s:'嗜鹼性白血球', k:'basc', u:'%', r:'0-1', d:1, min:0.1, max:0.7},
+  {g:'', n:'RDW', s:'血小板平均分佈', k:'rdw', u:'%', r:'2-31.0', d:1, min:11.2, max:15.4},
+  {g:'', n:'PDW', s:'血小板平均寬度', k:'pdw', u:'%', r:'10.0-22.0', d:1, min:11.4, max:18.6},
+  {g:'', n:'MPV', s:'平均血小板體積', k:'mpv', u:'%', r:'4-13.0', d:1, min:7.1, max:11.3},
+  {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'%', r:'10.0-45.0', d:1, min:14.0, max:36.0},
+  {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'%', r:'0'}
 ];
+
 const page1Right = [
-  {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', f:'', u:'', r:'', d:0, min:45, max:122},
-  {g:'', n:'T-P', s:'總蛋白量', k:'tp', u:'', f:'', r:'', d:1, min:6.3, max:8.1},
-  {g:'', n:'ALB', s:'白蛋白量', k:'alb', u:'', f:'', r:'', d:1, min:3.9, max:5.0},
-  {g:'', n:'GLO', s:'球蛋白量', k:'glo', u:'', f:'', r:'', d:1, min:2.3, max:3.3},
-  {g:'', n:'A/G', s:'白蛋白/球蛋白比值', k:'ag', u:'', f:'', r:'', d:2, min:1.24, max:2.10},
-  {g:'', n:'γ-GT', s:'麩胺醯轉移酵素', k:'ggt', u:'', f:'', r:'', d:0, min:9, max:36},
-  {g:'膽功能', n:'T-Bil', s:'總膽紅素', k:'tbil', u:'', f:'', r:'', d:1, min:0.2, max:1.0},
-  {g:'', n:'D-Bil', s:'直接膽紅素', k:'dbil', u:'', f:'', r:'', d:1, min:0.0, max:0.4},
-  {g:'胃', n:'HP', s:'幽門桿菌檢查', f:'1.2（－）', u:'', f:'', r:''},
-  {g:'心臟功能', n:'LDH', s:'乳酸脫氫酵素', k:'ldh', u:'', f:'', r:'', d:0, min:145, max:212},
-  {g:'', n:'CPK', s:'肌酸磷化酵素', k:'cpk', u:'', f:'', r:'', d:0, min:48, max:232},
-  {g:'血管指數', n:'HDL', s:'高密度膽固醇', k:'hdl', f:'', u:'', r:'', d:0, min:41, max:68},
-  {g:'', n:'LDL', s:'低密度膽固醇', k:'ldl', u:'', f:'', r:'', d:0, min:72, max:122},
-  {g:'', n:'Risk', s:'中風指數', k:'risk', u:'', f:'', r:'', d:1, min:1.9, max:4.7},
-  {g:'血清學檢查', n:'CRP', f:'', s:'炎症反應', f:'陰性（－）', u:'', r:''},
-  {g:'', n:'RA', s:'類風濕關節炎', f:'', f:'陰性（－）', u:'', r:''},
-  {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'', f:'未感染', u:'', r:''},
+  {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', u:'U/L', r:'35-141', d:0, min:45, max:122},
+  {g:'', n:'T-P', s:'總蛋白量', k:'tp', u:'mg/dl', r:'6.0-8.7', d:1, min:6.3, max:8.1},
+  {g:'', n:'ALB', s:'白蛋白量', k:'alb', u:'mg/dl', r:'3.5-5.5', d:1, min:3.9, max:5.0},
+  {g:'', n:'GLO', s:'球蛋白量', k:'glo', u:'mg/dl', r:'2.0-3.6', d:1, min:2.3, max:3.3},
+  {g:'', n:'A/G', s:'白蛋白/球蛋白比值', k:'ag', u:'%', r:'1.1-2.5', d:2, min:1.24, max:2.10},
+  {g:'', n:'γ-GT', s:'麩胺醯轉移酵素', k:'ggt', u:'U/L', r:'5-50', d:0, min:9, max:36},
+  {g:'膽功能', n:'T-Bil', s:'總膽紅素', k:'tbil', u:'mg/dl', r:'0.0-1.5', d:1, min:0.2, max:1.0},
+  {g:'', n:'D-Bil', s:'直接膽紅素', k:'dbil', u:'mg/dl', r:'0.0-0.7', d:1, min:0.0, max:0.4},
+  {g:'胃', n:'HP', s:'幽門桿菌檢查', f:'1.2（－）', u:'+/-', r:'1.2↓(－)'},
+  {g:'心臟功能', n:'LDH', s:'乳酸脫氫酵素', k:'ldh', u:'U/L', r:'135-225', d:0, min:145, max:212},
+  {g:'', n:'CPK', s:'肌酸磷化酵素', k:'cpk', u:'U/L', r:'30-308', d:0, min:48, max:232},
+  {g:'血管指數', n:'HDL', s:'高密度膽固醇', k:'hdl', u:'mg/ml', r:'↑30', d:0, min:41, max:68},
+  {g:'', n:'LDL', s:'低密度膽固醇', k:'ldl', u:'mg/ml', r:'↓130', d:0, min:72, max:122},
+  {g:'', n:'Risk', s:'中風指數', k:'risk', u:'%', r:'1.5-5.5', d:1, min:1.9, max:4.7},
+  {g:'血清學檢查', n:'CRP', s:'炎症反應', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
+  {g:'', n:'RA', s:'類風濕關節炎', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
+  {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'未感染', u:'+/-', r:'未感染'},
   {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
 ];
+
 const page2Left = [
   {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', r:'標準值 90-140', d:0, min:100, max:128},
   {g:'', n:'血壓（舒張壓）', k:'dbp', r:'標準值 60-90', d:0, min:64, max:84},
@@ -242,50 +253,158 @@ const page2Right = [
   {g:'', n:'B型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
   {g:'', n:'HCV C型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
   {g:'', n:'VDRL', s:'梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
-  {g:'糞便常規', n:'桿菌性痢疾', f:'', r:''},
-  {g:'', n:'阿米巴性痢疾', f:'', r:''},
-  {g:'', n:'寄生蟲', f:'', r:''},
+  {g:'糞便常規', n:'桿菌性痢疾', f:fixed.bacillary, r:''},
+  {g:'', n:'阿米巴性痢疾', f:fixed.amoeba, r:''},
+  {g:'', n:'寄生蟲', f:fixed.parasite, r:''},
   {g:'', n:'', f:'', r:''}
 ];
 
 const $ = id => document.getElementById(id);
-const inputs = {name:$("name"), gender:$("gender"), birth:$("birth"), exam:$("exam")};
-function seedFromString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
-function formatDateTW(v){if(!v)return '　年　月　日';const d=new Date(v+'T00:00:00');return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`}
-function groupInfo(items){const map={};for(let i=0;i<items.length;i++){if(items[i].g){let count=1;for(let j=i+1;j<items.length&&!items[j].g;j++)count++;map[i]={name:items[i].g,count}}}return map}
-function val(item,rand){
-  if(item.f!==undefined) return item.f;
-  if(item.k==='vision'){
-    const r=(0.7+rand()*0.3).toFixed(1), l=(0.7+rand()*0.3).toFixed(1), h=Math.round(156+rand()*14), w=Math.round(48+rand()*17);
+const inputs = {
+  name: $("name"),
+  gender: $("gender"),
+  birth: $("birth"),
+  exam: $("exam")
+};
+
+function seedFromString(str){
+  let h = 2166136261;
+  for(let i=0;i<str.length;i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(a){
+  return function(){
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function formatDateTW(v){
+  if(!v) return '　年　月　日';
+  const d = new Date(v + 'T00:00:00');
+  return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`;
+}
+
+function groupInfo(items){
+  const map = {};
+  for(let i=0;i<items.length;i++){
+    if(items[i].g){
+      let count = 1;
+      for(let j=i+1;j<items.length && !items[j].g;j++) count++;
+      map[i] = { name: items[i].g, count };
+    }
+  }
+  return map;
+}
+
+function val(item, rand){
+  if(item.f !== undefined) return item.f;
+
+  if(item.k === 'vision'){
+    const r = (0.7 + rand()*0.3).toFixed(1);
+    const l = (0.7 + rand()*0.3).toFixed(1);
+    const h = Math.round(156 + rand()*14);
+    const w = Math.round(48 + rand()*17);
     return `右眼裸 ${r} / 左眼裸 ${l} / 身高 ${h} / 體重 ${w}`;
   }
-  const v=item.min+(item.max-item.min)*rand();
-  return item.d===0 ? String(Math.round(v)) : v.toFixed(item.d);
+
+  const v = item.min + (item.max - item.min) * rand();
+  return item.d === 0 ? String(Math.round(v)) : v.toFixed(item.d);
 }
-function renderMeta(){['1','2'].forEach(n=>{ $("name"+n).textContent=inputs.name.value.trim(); $("gender"+n).textContent=inputs.gender.value; $("birth"+n).textContent=formatDateTW(inputs.birth.value); $("exam"+n).textContent=formatDateTW(inputs.exam.value); })}
-function build(targetId,left,right,seedText){
-  const tb=$(targetId); tb.innerHTML='';
-  const lg=groupInfo(left), rg=groupInfo(right), rand=mulberry32(seedFromString(seedText+targetId));
-  const rows=Math.max(left.length,right.length);
+
+function renderMeta(){
+  ['1','2'].forEach(n => {
+    $("name"+n).textContent = inputs.name.value.trim();
+    $("gender"+n).textContent = inputs.gender.value;
+    $("birth"+n).textContent = formatDateTW(inputs.birth.value);
+    $("exam"+n).textContent = formatDateTW(inputs.exam.value);
+  });
+}
+
+function build(targetId, left, right, seedText){
+  const tb = $(targetId);
+  tb.innerHTML = '';
+
+  const lg = groupInfo(left);
+  const rg = groupInfo(right);
+  const rand = mulberry32(seedFromString(seedText + targetId));
+  const rows = Math.max(left.length, right.length);
+
   for(let i=0;i<rows;i++){
-    const l=left[i]||{n:'',s:'',f:'',u:'',r:''};
-    const r=right[i]||{n:'',s:'',f:'',u:'',r:''};
-    const tr=document.createElement('tr');
-    if(lg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=lg[i].count;td.textContent=lg[i].name;tr.appendChild(td)}
-    const l1=document.createElement('td'); l1.innerHTML=`<span class="item">${l.n}</span>${l.s?`<span class="sub">${l.s}</span>`:''}`;
-    const l2=document.createElement('td'); l2.className='center'; l2.textContent=val(l,rand);
-    const l3=document.createElement('td'); l3.className='center'; l3.textContent=`${l.u?l.u+' ':''}${l.r||''}`.trim();
-    tr.append(l1,l2,l3);
-    if(rg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=rg[i].count;td.textContent=rg[i].name;tr.appendChild(td)}
-    const r1=document.createElement('td'); r1.innerHTML=`<span class="item">${r.n}</span>${r.s?`<span class="sub">${r.s}</span>`:''}`;
-    const r2=document.createElement('td'); r2.className='center'; r2.textContent=val(r,rand);
-    const r3=document.createElement('td'); r3.className='center'; r3.textContent=`${r.u?r.u+' ':''}${r.r||''}`.trim();
-    tr.append(r1,r2,r3); tb.appendChild(tr);
+    const l = left[i] || {n:'', s:'', f:'', u:'', r:''};
+    const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
+    const tr = document.createElement('tr');
+
+    if(lg[i]){
+      const td = document.createElement('td');
+      td.className = 'vcol';
+      td.rowSpan = lg[i].count;
+      td.textContent = lg[i].name;
+      tr.appendChild(td);
+    }
+
+    const l1 = document.createElement('td');
+    l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
+
+    const l2 = document.createElement('td');
+    l2.className = 'center';
+    l2.textContent = val(l, rand);
+
+    const l3 = document.createElement('td');
+    l3.className = 'center';
+    l3.textContent = `${l.u ? l.u + ' ' : ''}${l.r || ''}`.trim();
+
+    tr.append(l1, l2, l3);
+
+    if(rg[i]){
+      const td = document.createElement('td');
+      td.className = 'vcol';
+      td.rowSpan = rg[i].count;
+      td.textContent = rg[i].name;
+      tr.appendChild(td);
+    }
+
+    const r1 = document.createElement('td');
+    r1.innerHTML = `<span class="item">${r.n}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
+
+    const r2 = document.createElement('td');
+    r2.className = 'center';
+    r2.textContent = val(r, rand);
+
+    const r3 = document.createElement('td');
+    r3.className = 'center';
+    r3.textContent = `${r.u ? r.u + ' ' : ''}${r.r || ''}`.trim();
+
+    tr.append(r1, r2, r3);
+    tb.appendChild(tr);
   }
 }
-function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
-$('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
+
+function regenerate(){
+  renderMeta();
+  const seed = [
+    inputs.name.value,
+    inputs.gender.value,
+    inputs.birth.value,
+    inputs.exam.value
+  ].join('|');
+
+  build('tbody1', page1Left, page1Right, seed);
+  build('tbody2', page2Left, page2Right, seed + '-2');
+}
+
+$("regen").addEventListener('click', regenerate);
+$("printBtn").addEventListener('click', () => window.print());
+Object.values(inputs).forEach(el => el.addEventListener('input', renderMeta));
+
+regenerate();
+</script>
 </script>
 </body>
 </html>
