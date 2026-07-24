@@ -134,7 +134,7 @@
 <body>
 <div class="app">
   <aside class="controls">
-    <h1>高相似版體檢報告</h1>
+    <h1>體檢報告</h1>
     <p>這版做成接近你提供範本 A 的雙頁灰階健檢單視覺，但仍是重新排版繪製，不是掃描底圖。你可直接貼上到 GitHub 的 HTML 使用。</p>
     <h2>基本資料</h2>
     <label>姓名</label>
@@ -158,11 +158,11 @@
       <section class="sheet">
         <div class="title-band">健康檢查報告書</div>
         <div class="meta">
-          <div class="meta-line"><span class="meta-label">姓名：</span><span class="meta-value" id="name1"></span></div>
-          <div class="meta-line"><span class="meta-label">出生年月日期：</span><span class="meta-value" id="birth1"></span></div>
-          <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender1"></span></div>
-          <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam1"></span></div>
-        </div>
+  <div class="meta-line"><span class="meta-label">姓名：</span><span class="meta-value" id="name2"></span></div>
+  <div class="meta-line"><span class="meta-label">出生年月日期：</span><span class="meta-value" id="birth2"></span></div>
+  <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender2"></span></div>
+  <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam2"></span></div>
+</div>
         <table class="report">
           <thead>
             <tr>
@@ -172,17 +172,21 @@
           </thead>
           <tbody id="tbody1"></tbody>
         </table>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
-        <div class="footer-grid" style="margin-top:8px;">
-          <div>
-            <div class="checks">
-              <div>以上檢查項目均明顯異常。</div>
-              <div>請注意飲食定期追蹤檢查。</div>
-              <div>請進一步到醫院診查治療。</div>
-            </div>
-          </div>
-          <div class="telbox">祥顥醫院健康管理中心：02-29468776</div>
-        </div>
+     <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div>
+<div class="sigline">
+  <span>健檢醫師姓名：陳志明醫師</span>
+  <span>總評建議：以上檢查結果供臨床參考</span>
+</div>
+<div class="footer-grid" style="margin-top:8px;">
+  <div>
+    <div class="checks">
+      <div>以上檢查項目均明顯異常。</div>
+      <div>請注意飲食定期追蹤檢查。</div>
+      <div>請進一步到醫院診查治療。</div>
+    </div>
+  </div>
+  <div class="telbox">祥顥醫院健康管理中心：02-29468776</div>
+</div>
       </section>
 
      <section class="sheet">
@@ -259,10 +263,19 @@
 </div>
 
 <script>
+<script>
 const fixed = {
-  colorBlind:'正常', urineProtein:'陰性（－）', urineBlood:'陰性（－）', urineSugar:'陰性（－）',
-  hbsag:'陰性（－）', hbsab:'陽性（＋）', hcv:'陰性（－）', vdrl:'陰性（－）',
-  bacillary:'no growth', amoeba:'not found', parasite:'not found'
+  colorBlind:'正常',
+  urineProtein:'陰性（－）',
+  urineBlood:'陰性（－）',
+  urineSugar:'陰性（－）',
+  hbsag:'陰性（－）',
+  hbsab:'陽性（＋）',
+  hcv:'陰性（－）',
+  vdrl:'陰性（－）',
+  bacillary:'no growth',
+  amoeba:'not found',
+  parasite:'not found'
 };
 
 const page1Left = [
@@ -285,6 +298,7 @@ const page1Left = [
   {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'%', r:'10.0-45.0', d:1, min:14.0, max:36.0},
   {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'', r:'0'}
 ];
+
 const page1Right = [
   {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', u:'U/L', r:'35-141', d:0, min:45, max:122},
   {g:'', n:'T-P', s:'總蛋白量', k:'tp', u:'mg/dl', r:'6.0-8.7', d:1, min:6.3, max:8.1},
@@ -305,6 +319,7 @@ const page1Right = [
   {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'未感染', u:'+/-', r:'未感染'},
   {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
 ];
+
 const page2Left = [
   {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', u:'mmHg', r:'標準值 90-140', d:0, min:100, max:128},
   {g:'', n:'血壓（舒張壓）', k:'dbp', u:'mmHg', r:'標準值 60-90', d:0, min:64, max:84},
@@ -321,9 +336,10 @@ const page2Left = [
   {g:'', n:'Unc Acid', s:'尿酸', k:'uric', u:'mg/dl', r:'2.0-7.0', d:1, min:2.9, max:6.3},
   {g:'血脂肪', n:'TG', s:'中性脂肪', k:'tg', u:'mg/dl', r:'30-150', d:0, min:45, max:130},
   {g:'', n:'T-CHO', s:'總膽固醇', k:'cho', u:'mg/dl', r:'100-200', d:0, min:126, max:194},
-  {g:'血糖', n:'AC', s:'飯前血糖', f:'', u:'mg/dl', r:'70-110'},
-  {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
+  {g:'血糖', n:'AC', s:'飯前血糖', k:'ac', u:'mg/dl', r:'70-110', d:0, min:78, max:103},
+  {g:'', n:'PC', s:'飯後血糖', k:'pc', u:'mg/dl', r:'90-120', d:0, min:94, max:116}
 ];
+
 const page2Right = [
   {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'', n:'維他命 C', f:'陰性（－）', u:'', r:'陰性（－）'},
@@ -336,40 +352,87 @@ const page2Right = [
   {g:'', n:'B型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
   {g:'', n:'HCV C型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
   {g:'', n:'VDRL', s:'梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
-  {g:'糞便常規', n:'桿菌性痢疾', f:'', u:'', r:''},
-  {g:'', n:'阿米巴性痢疾', f:'', u:'', r:''},
-  {g:'', n:'寄生蟲', f:'', u:'', r:''},
-  {g:'', n:'', f:'', u:'', r:''}
+  {g:'糞便常規', n:'桿菌性痢疾', f:fixed.bacillary, u:'', r:''},
+  {g:'', n:'阿米巴性痢疾', f:fixed.amoeba, u:'', r:''},
+  {g:'', n:'寄生蟲', f:fixed.parasite, u:'', r:''}
 ];
 
 const $ = id => document.getElementById(id);
-const inputs = {name:$("name"), gender:$("gender"), birth:$("birth"), exam:$("exam")};
-function seedFromString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
-function formatDateTW(v){if(!v)return '　年　月　日';const d=new Date(v+'T00:00:00');return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`}
-function groupInfo(items){const map={};for(let i=0;i<items.length;i++){if(items[i].g){let count=1;for(let j=i+1;j<items.length&&!items[j].g;j++)count++;map[i]={name:items[i].g,count}}}return map}
-function val(item,rand){
-  if(item.f!==undefined) return item.f;
-  if(item.k==='vision'){
-    const r=(0.7+rand()*0.3).toFixed(1), l=(0.7+rand()*0.3).toFixed(1), h=Math.round(156+rand()*14), w=Math.round(48+rand()*17);
-    return `右眼裸 ${r} / 左眼裸 ${l} / 身高 ${h} / 體重 ${w}`;
+const inputs = {
+  name: $("name"),
+  gender: $("gender"),
+  birth: $("birth"),
+  exam: $("exam")
+};
+
+function seedFromString(str){
+  let h = 2166136261;
+  for(let i=0;i<str.length;i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
   }
-  const v=item.min+(item.max-item.min)*rand();
-  return item.d===0 ? String(Math.round(v)) : v.toFixed(item.d);
+  return h >>> 0;
 }
-function renderMeta(){['1','2'].forEach(n=>{ $("name"+n).textContent=inputs.name.value.trim(); $("gender"+n).textContent=inputs.gender.value; $("birth"+n).textContent=formatDateTW(inputs.birth.value); $("exam"+n).textContent=formatDateTW(inputs.exam.value); })}
-function build(targetId,left,right,seedText){
+
+function mulberry32(a){
+  return function(){
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function formatDateTW(v){
+  if(!v) return '　年　月　日';
+  const d = new Date(v + 'T00:00:00');
+  return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`;
+}
+
+function groupInfo(items){
+  const map = {};
+  for(let i=0;i<items.length;i++){
+    if(items[i].g){
+      let count = 1;
+      for(let j=i+1;j<items.length && !items[j].g;j++) count++;
+      map[i] = {name:items[i].g, count};
+    }
+  }
+  return map;
+}
+
+function val(item, rand){
+  if(item.f !== undefined) return item.f;
+  const v = item.min + (item.max - item.min) * rand();
+  return item.d === 0 ? String(Math.round(v)) : v.toFixed(item.d);
+}
+
+function renderMeta(){
+  const ids = ['1','2'];
+  ids.forEach(n=>{
+    const nameEl = $("name"+n);
+    const genderEl = $("gender"+n);
+    const birthEl = $("birth"+n);
+    const examEl = $("exam"+n);
+    if(nameEl) nameEl.textContent = inputs.name.value.trim();
+    if(genderEl) genderEl.textContent = inputs.gender.value;
+    if(birthEl) birthEl.textContent = formatDateTW(inputs.birth.value);
+    if(examEl) examEl.textContent = formatDateTW(inputs.exam.value);
+  });
+}
+
+function build(targetId, left, right, seedText){
   const tb = $(targetId);
   tb.innerHTML = '';
 
-  const lg = groupInfo(left);
-  const rg = groupInfo(right);
+  const lg = groupInfo(left || []);
+  const rg = groupInfo(right || []);
   const rand = mulberry32(seedFromString(seedText + targetId));
-  const rows = Math.max(left.length, right.length);
+  const hasRight = Array.isArray(right) && right.length > 0;
+  const rows = Math.max(left.length, hasRight ? right.length : 0);
 
-  for(let i = 0; i < rows; i++){
+  for(let i=0;i<rows;i++){
     const l = left[i] || {n:'', s:'', f:'', u:'', r:''};
-    const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
     const tr = document.createElement('tr');
 
     if(lg[i]){
@@ -379,25 +442,9 @@ function build(targetId,left,right,seedText){
       td.textContent = lg[i].name;
       tr.appendChild(td);
     }
-function renderPage2Top(seed){
-  const rand = mulberry32(seedFromString(seed + '-top'));
 
-  const visionRight = '右眼　裸　1.0';
-  const visionLeft  = '左眼　裸　1.0';
-
-  const height = Math.floor(155 + rand() * 21); // 155-175
-  const weight = Math.floor(45 + rand() * 21);  // 45-65
-
-  $('visionRightRow').textContent = visionRight;
-  $('visionLeftRow').textContent = visionLeft;
-  $('colorBlindRow').textContent = fixed.colorBlind || '正常';
-  $('heightRow').textContent = String(height);
-  $('weightRow').textContent = String(weight);
-  $('hearingRightRow').textContent = '正常';
-  $('hearingLeftRow').textContent = '正常';
-}
     const l1 = document.createElement('td');
-    l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
+    l1.innerHTML = `<span class="item">${l.n || ''}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
 
     const l2 = document.createElement('td');
     l2.className = 'center';
@@ -413,43 +460,68 @@ function renderPage2Top(seed){
 
     tr.append(l1, l2, l3, l4);
 
-    if(rg[i]){
-      const td = document.createElement('td');
-      td.className = 'vcol';
-      td.rowSpan = rg[i].count;
-      td.textContent = rg[i].name;
-      tr.appendChild(td);
+    if(hasRight){
+      const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
+
+      if(rg[i]){
+        const td = document.createElement('td');
+        td.className = 'vcol';
+        td.rowSpan = rg[i].count;
+        td.textContent = rg[i].name;
+        tr.appendChild(td);
+      }
+
+      const r1 = document.createElement('td');
+      r1.innerHTML = `<span class="item">${r.n || ''}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
+
+      const r2 = document.createElement('td');
+      r2.className = 'center';
+      r2.textContent = val(r, rand);
+
+      const r3 = document.createElement('td');
+      r3.className = 'center';
+      r3.textContent = r.u || '';
+
+      const r4 = document.createElement('td');
+      r4.className = 'center';
+      r4.textContent = r.r || '';
+
+      tr.append(r1, r2, r3, r4);
     }
 
-    const r1 = document.createElement('td');
-    r1.innerHTML = `<span class="item">${r.n}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
-
-    const r2 = document.createElement('td');
-    r2.className = 'center';
-    r2.textContent = val(r, rand);
-
-    const r3 = document.createElement('td');
-    r3.className = 'center';
-    r3.textContent = r.u || '';
-
-    const r4 = document.createElement('td');
-    r4.className = 'center';
-    r4.textContent = r.r || '';
-
-    tr.append(r1, r2, r3, r4);
     tb.appendChild(tr);
   }
 }
+
+function renderPage2Top(seed){
+  const rand = mulberry32(seedFromString(seed + '-top'));
+  const height = Math.floor(155 + rand() * 21);
+  const weight = Math.floor(45 + rand() * 21);
+
+  $('visionRightRow').innerHTML = '右眼　裸<br>1.0';
+  $('visionLeftRow').innerHTML = '左眼　裸<br>1.0';
+  $('colorBlindRow').textContent = fixed.colorBlind || '正常';
+  $('heightRow').textContent = String(height);
+  $('weightRow').textContent = String(weight);
+  $('hearingRightRow').textContent = '正常';
+  $('hearingLeftRow').textContent = '正常';
+}
+
 function regenerate(){
   renderMeta();
   const seed = [inputs.name.value, inputs.gender.value, inputs.birth.value, inputs.exam.value].join('|');
 
   build('tbody1', page1Left, page1Right, seed);
-  build('tbody2Left', page2Left, [], seed + '-2-left');
-  build('tbody2Right', page2Right, [], seed + '-2-right');
+  build('tbody2Left', page2Left, null, seed + '-2-left');
+  build('tbody2Right', page2Right, null, seed + '-2-right');
   renderPage2Top(seed);
 }
-$('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
+
+$('regen').addEventListener('click', regenerate);
+$('printBtn').addEventListener('click', () => window.print());
+Object.values(inputs).forEach(el => el.addEventListener('input', renderMeta));
+
+regenerate();
 </script>
 </body>
 </html>
