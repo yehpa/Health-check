@@ -12,8 +12,14 @@
       --grid:#3a3a3a;
       --soft:#6b6b6b;
     }
+    .vhead{
+  width:23px;
+  min-width:23px;
+  padding:0 !important;
+  background:#d8d8d2;
+}
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--page-bg);color:var(--ink);font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti","Noto Serif TC",serif;overflow-x:hidden}
+    html,body{margin:0;padding:0;background:var(--page-bg);color:var(--ink);font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti","Noto Serif TC",serif}
     .app{display:grid;grid-template-columns:350px 1fr;min-height:100vh}
     .controls{background:#f2eee6;border-right:1px solid #cfc7bb;padding:24px;position:sticky;top:0;height:100vh;overflow:auto}
     .controls h1{margin:0 0 10px;font-size:26px;line-height:1.2}
@@ -26,51 +32,47 @@
     .hint{font-size:12px;line-height:1.6;color:#665f54}
     .stage{padding:24px;overflow:auto}
     .sheet-stack{width:210mm;margin:0 auto;display:block}
-    .sheet{width:210mm;min-height:297mm;background:var(--paper);padding:10mm 9mm 9mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative;overflow:hidden}
+    .sheet{width:190mm;min-height:277mm;background:var(--paper);padding:9mm 8mm 8mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative;overflow:hidden}
     .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.018),transparent 58%),linear-gradient(rgba(255,255,255,.35),rgba(0,0,0,.02));pointer-events:none;mix-blend-mode:multiply}
-    .title-band{margin:0 3mm 7px;border-top:2px solid #8d8d8d;border-bottom:2px solid #8d8d8d;background:linear-gradient(to bottom,#c3c3c3 0%,#efefef 48%,#cfcfcf 100%);text-align:center;font-size:34px;font-weight:700;letter-spacing:12px;padding:6px 0 5px;line-height:1.05;position:relative;z-index:1}
-    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 34px;margin:4px 2mm 8px;position:relative;z-index:1}
-    .meta-line{display:flex;align-items:flex-end;gap:8px;font-size:15px;line-height:1.2;min-height:24px}
-    .meta-label{font-weight:700;white-space:nowrap}
-    .meta-value{display:inline-block;min-width:110px;letter-spacing:1px}
-    table.report,table.mini-report{border-collapse:collapse;table-layout:fixed;background:#fbfbf8;position:relative;z-index:1}
-    table.report{width:100%;border:2.2px solid #222}
-    .report th,.report td,.mini-report th,.mini-report td{border:1px solid var(--grid);padding:2px 4px;vertical-align:middle;line-height:1.08;font-size:12px;background:#fbfbf7}
-    .report thead th,.mini-report thead th{font-weight:700;text-align:center;background:#d8d8d2}
-    .group{width:22px;text-align:center;font-weight:700;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:2px;padding:4px 1px!important;background:#efefea}
-    .item b{display:block;font-size:12px;line-height:1.04;font-weight:700}
-    .sub{display:block;font-size:10.5px;line-height:1.04;margin-top:1px}
-    .val,.unit,.ref{text-align:center}
-    .ok{color:#1f4e8c}
-    .warn{color:#9b2525}
-    .legend{margin:6px 2mm 0;font-size:11.5px;line-height:1.45;position:relative;z-index:1}
-    .footer-grid{display:grid;grid-template-columns:1fr 84mm;gap:14px;margin:8px 2mm 0;align-items:end;position:relative;z-index:1}
+    .title-band{margin:0 2mm 6px;border-top:2px solid #8d8d8d;border-bottom:2px solid #8d8d8d;background:linear-gradient(to bottom,#c3c3c3 0%,#e4e4e4 50%,#c8c8c8 100%);text-align:center;letter-spacing:.28em;font-size:36px;line-height:1.05;padding:3px 0 4px;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti",serif;font-weight:700}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:14px;margin:0 6px 7px}
+    .meta-line{display:flex;align-items:flex-end;min-height:20px}
+    .meta-label{font-weight:700;white-space:nowrap;margin-right:4px}
+    .meta-value{flex:1;min-width:0}
+    table.report{width:100%;border-collapse:collapse;table-layout:fixed;background:#fbfbf8;border:2.8px solid #222}
+    table.report th,table.report td{border:1.15px solid var(--grid);padding:3px 4px;vertical-align:middle;line-height:1.12;font-size:12.8px;background:#fbfbf7}
+    table.report th{font-weight:700;text-align:center;background:#d8d8d2}
+    .vcol{
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  text-align:center;
+  letter-spacing:1px;
+  font-weight:700;
+  background:#e2e2db;
+  width:23px;
+  min-width:23px;
+  padding:4px 1px!important;
+}
+    .item{font-weight:700}
+    .sub{display:block;font-size:11px;font-weight:600;margin-top:1px}
+    .center{text-align:center}
+    .small{font-size:12px}
+    .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
     .checks{font-size:11.5px;line-height:1.75}
-    .checks div::before{content:"□";margin-right:6px}
-    .telbox{border:1.7px solid #555;padding:5px 12px;font-size:13px;text-align:center;background:#f4f4ef;white-space:nowrap;margin-left:auto;width:fit-content}
-    .telbox.double{margin-top:4px}
-    .blessing{font-size:12px;text-align:center;line-height:1.6;padding-top:2px}
-    .small{font-size:11.5px;line-height:1.55}
+    .checks div::before{content:"";margin-right:0}
+    .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
+    .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
+    .telbox{border:1.45px solid var(--grid);padding:5px 8px;text-align:center;font-size:11.5px;background:#f7f7f3}.telbox.double{border:3px double #2b2b2b}
     .sigline{display:flex;justify-content:space-between;gap:16px;margin-top:8px;font-size:12px;color:#333;border-top:1px solid #666;padding-top:5px}
-    .sheet-body{display:block}
-    .page2-top{display:grid;grid-template-columns:96mm calc(100% - 96mm);align-items:start}
-    .page2-left-top{border-right:none}
-    .page2-left-top th:last-child,.page2-left-top td:last-child{border-right:none}
-    .mini-report{width:100%;border:2.2px solid #222;border-left:2.2px solid #222}
-    .mini-report th,.mini-report td{font-size:12px;padding:2px 3px;text-align:center;line-height:1.08}
-    .mini-report .split-label{font-weight:700}
-    .page2-main{margin-top:0}
-    .note-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-top:8px;font-size:12px;position:relative;z-index:1}
-    .doctor-line{display:flex;justify-content:space-between;gap:24px;margin-top:8px;font-size:12px}
-    @page{size:A4 portrait;margin:0}
     @media print{
-      html,body{background:#fff}
+      body{background:#fff}
       .controls{display:none}
       .app{display:block}
       .stage{padding:0}
-      .sheet-stack{width:210mm;margin:0 auto}
-      .sheet{box-shadow:none;margin:0;width:210mm;min-height:297mm;page-break-after:always;break-after:page}
+      .sheet-stack{width:auto}
+      .sheet{box-shadow:none;margin:0 auto;width:190mm;min-height:277mm;page-break-after:always;break-after:page}
       .sheet:last-child{page-break-after:auto}
+      @page{size:A4 portrait;margin:10mm}
     }
     @media (max-width:1200px){
       .app{grid-template-columns:1fr}
@@ -118,13 +120,13 @@
         <table class="report">
           <thead>
             <tr>
-              <th style="width:24px"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-              <th style="width:24px"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-            </tr>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+</tr>
           </thead>
           <tbody id="tbody1"></tbody>
         </table>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div>
+        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
         <div class="footer-grid" style="margin-top:8px;">
           <div>
             <div class="checks">
@@ -145,59 +147,30 @@
           <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender2"></span></div>
           <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam2"></span></div>
         </div>
-        <div class="sheet-body">
-          <div class="page2-top">
-            <table class="report page2-left-top">
-              <thead>
-                <tr>
-                  <th style="width:24px"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-                </tr>
-              </thead>
-              <tbody id="tbody2Left"></tbody>
-            </table>
-            <table class="mini-report">
-              <thead>
-                <tr>
-                  <th>視力檢查</th><th>身高體重</th><th>聽力檢查</th>
-                </tr>
-              </thead>
-              <tbody id="miniVisionBody"></tbody>
-              <thead>
-                <tr>
-                  <th style="width:37%">檢查項目</th><th style="width:24%">檢查數值</th><th style="width:17%">單位</th><th style="width:22%">標準值</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-          <table class="report page2-main">
-            <thead>
-              <tr>
-                <th style="width:24px"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-                <th style="width:24px"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-              </tr>
-            </thead>
-            <tbody id="tbody2Main"></tbody>
-          </table>
-          <div class="note-row">
-            <div>
-              <div class="small">胸部X光檢查：無明顯異常</div>
-              <div class="small">皮膚疥蟲檢查：無明顯異常</div>
+        <table class="report">
+          <thead>
+            <tr>
+             <tr>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+</tr>
+          </thead>
+          <tbody id="tbody2"></tbody>
+        </table>
+        <div class="footer-grid">
+          <div>
+            <div class="small">胸部 X 光檢查：無明顯異常</div>
+            <div class="small">皮膚疥蟲檢查：無明顯異常</div>
+            <div class="checks" style="margin-top:8px;">
+              <div style="font-weight:700;">■ 以上檢查之項目均無明顯異常。</div>
+              <div>□ 請注意飲食定期追蹤預防檢查。</div>
+              <div>□ 請進一步到醫院評估治療。</div>
             </div>
+            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
+          </div>
+          <div>
             <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
-          </div>
-          <div class="footer-grid" style="margin-top:8px;">
-            <div>
-              <div class="checks" style="margin-top:2px;">
-                <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;position:relative;"><span style="position:absolute;inset:1px;background:#8f8f8f;"></span></span>以上檢查之項目均無明顯異常。</div>
-                <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請注意飲食定期追蹤預防檢查。</div>
-                <div><span style="display:inline-block;width:12px;height:12px;border:1.4px solid #333;vertical-align:-1px;margin-right:8px;"></span>請進一步到醫院評估治療。</div>
-              </div>
-              <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div>
-              <div class="doctor-line"><span>健檢醫師姓名：陳志明醫師</span><span>簽章及證書字號</span></div>
-            </div>
-            <div>
-              <div class="telbox double">祥顥醫院健康管理中心：02-29468776</div>
-            </div>
+            <div class="telbox double">祥顥醫院健康管理中心：02-29468776</div>
           </div>
         </div>
       </section>
@@ -230,7 +203,7 @@ const page1Left = [
   {g:'', n:'PDW', s:'血小板平均寬度', k:'pdw', u:'%', r:'10.0-22.0', d:1, min:11.4, max:18.6},
   {g:'', n:'MPV', s:'平均血小板體積', k:'mpv', u:'%', r:'4-13.0', d:1, min:7.1, max:11.3},
   {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'%', r:'10.0-45.0', d:1, min:14.0, max:36.0},
-  {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'%', r:'0'}
+  {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'', r:'0'}
 ];
 const page1Right = [
   {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', u:'U/L', r:'35-141', d:0, min:45, max:122},
@@ -253,15 +226,15 @@ const page1Right = [
   {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
 ];
 const page2Left = [
-  {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', r:'標準值 90-140', d:0, min:100, max:128},
-  {g:'', n:'血壓（舒張壓）', k:'dbp', r:'標準值 60-90', d:0, min:64, max:84},
-  {g:'', n:'脈搏指數', k:'pulse', r:'平均值 60-100', d:0, min:65, max:90},
-  {g:'', n:'身體質量指數 BMI', k:'bmi', r:'平均值 18-24', d:1, min:18.4, max:23.5},
-  {g:'尿液檢查', n:'尿蛋白（Protein）', f:fixed.urineProtein, r:'陰性（－）'},
-  {g:'', n:'尿潛血（OB）', f:fixed.urineBlood, r:'陰性（－）'},
-  {g:'', n:'尿糖（Glucose）', f:fixed.urineSugar, r:'陰性（－）'},
-  {g:'', n:'酸鹼值（PH）', k:'ph', r:'5.0-8.0', d:1, min:5.7, max:7.2},
-  {g:'', n:'酮體（Ket）', f:'陰性（－）', r:'陰性（－）'},
+  {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', u:'mmHg', r:'標準值 90-140', d:0, min:100, max:128},
+  {g:'', n:'血壓（舒張壓）', k:'dbp', u:'mmHg', r:'標準值 60-90', d:0, min:64, max:84},
+  {g:'', n:'脈搏指數', k:'pulse', u:'/min', r:'平均值 60-100', d:0, min:65, max:90},
+  {g:'', n:'身體質量指數 BMI', k:'bmi', u:'', r:'平均值 18-24', d:1, min:18.4, max:23.5},
+  {g:'尿液檢查', n:'尿蛋白（Protein）', f:fixed.urineProtein, u:'', r:'陰性（－）'},
+  {g:'', n:'尿潛血（OB）', f:fixed.urineBlood, u:'', r:'陰性（－）'},
+  {g:'', n:'尿糖（Glucose）', f:fixed.urineSugar, u:'', r:'陰性（－）'},
+  {g:'', n:'酸鹼值（PH）', k:'ph', u:'', r:'5.0-8.0', d:1, min:5.7, max:7.2},
+  {g:'', n:'酮體（Ket）', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'腎功能', n:'SGPT', s:'肝功能檢查', k:'sgpt', u:'U/ml', r:'5-42', d:0, min:11, max:35},
   {g:'', n:'BUN', s:'尿素氮', k:'bun', u:'mg/dl', r:'4.7-23', d:1, min:6.8, max:19.4},
   {g:'', n:'Creatinine', s:'肌酸酐', k:'cr', u:'mg/dl', r:'0.1-1.5', d:1, min:0.5, max:1.2},
@@ -272,21 +245,23 @@ const page2Left = [
   {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
 ];
 const page2Right = [
-  {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'維他命 C', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'尿膽紅素（Bil）', f:'陰性（－）', r:'陰性（－）'},
-  {g:'', n:'比重（SP,GR）', k:'spgr', r:'1.000-1.030', d:3, min:1.008, max:1.025},
-  {g:'', n:'尿膽素原（Uro）', f:'陰性（－）', r:'陰性（－）'},
+  {g:'視力檢查', n:'右眼裸／左眼裸', k:'vision', u:'', r:'身高體重 / 聽力檢查'},
+  {g:'', n:'色盲檢查', f:fixed.colorBlind, u:'', r:'正常'},
+  {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', u:'', r:'陰性（－）'},
+  {g:'', n:'維他命 C', f:'陰性（－）', u:'', r:'陰性（－）'},
+  {g:'', n:'尿膽紅素（Bil）', f:'陰性（－）', u:'', r:'陰性（－）'},
+  {g:'', n:'比重（SP,GR）', k:'spgr', u:'', r:'1.000-1.030', d:3, min:1.008, max:1.025},
+  {g:'', n:'尿膽素原（Uro）', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'肝功能檢查', n:'SGOT', k:'sgot', u:'U/ml', r:'5-40', d:0, min:10, max:34},
   {g:'肝炎病毒', n:'B型肝炎表面抗原', f:fixed.hbsag, u:'+/-', r:'未帶原 / 帶原者'},
   {g:'', n:'B型肝炎表面抗體', f:fixed.hbsab, u:'+/-', r:'無抗體 / 有抗體'},
   {g:'', n:'B型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
   {g:'', n:'HCV C型肝炎', f:fixed.hcv, u:'+/-', r:'未感染 / 已感染'},
   {g:'', n:'VDRL', s:'梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
-  {g:'糞便常規', n:'桿菌性痢疾', f:'', r:''},
-  {g:'', n:'阿米巴性痢疾', f:'', r:''},
-  {g:'', n:'寄生蟲', f:'', r:''},
-  {g:'', n:'', f:'', r:''}
+  {g:'糞便常規', n:'桿菌性痢疾', f:'', u:'', r:''},
+  {g:'', n:'阿米巴性痢疾', f:'', u:'', r:''},
+  {g:'', n:'寄生蟲', f:'', u:'', r:''},
+  {g:'', n:'', f:'', u:'', r:''}
 ];
 
 const $ = id => document.getElementById(id);
@@ -306,42 +281,72 @@ function val(item,rand){
 }
 function renderMeta(){['1','2'].forEach(n=>{ $("name"+n).textContent=inputs.name.value.trim(); $("gender"+n).textContent=inputs.gender.value; $("birth"+n).textContent=formatDateTW(inputs.birth.value); $("exam"+n).textContent=formatDateTW(inputs.exam.value); })}
 function build(targetId,left,right,seedText){
-  const tb=$(targetId); tb.innerHTML='';
-  const lg=groupInfo(left), rg=groupInfo(right), rand=mulberry32(seedFromString(seedText+targetId));
-  const rows=Math.max(left.length,right.length);
-  for(let i=0;i<rows;i++){
-    const l=left[i]||{n:'',s:'',f:'',u:'',r:''};
-    const r=right[i]||{n:'',s:'',f:'',u:'',r:''};
-    const tr=document.createElement('tr');
-    if(lg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=lg[i].count;td.textContent=lg[i].name;tr.appendChild(td)}
-    const l1=document.createElement('td'); l1.innerHTML=`<span class="item">${l.n}</span>${l.s?`<span class="sub">${l.s}</span>`:''}`;
-    const l2=document.createElement('td'); l2.className='center'; l2.textContent=val(l,rand);
-    const l3=document.createElement('td'); l3.className='center'; l3.textContent=val(l,rand);
-    const l4=document.createElement('td'); l4.className='center'; l4.textContent=l.u||'';
-    const l5=document.createElement('td'); l5.className='center'; l5.textContent=l.r||'';
-    tr.append(l1,l2,l3,l4,l5);
-    if(rg[i]){const td=document.createElement('td');td.className='vcol';td.rowSpan=rg[i].count;td.textContent=rg[i].name;tr.appendChild(td)}
-    const r1=document.createElement('td'); r1.innerHTML=`<span class="item">${r.n}</span>${r.s?`<span class="sub">${r.s}</span>`:''}`;
-    const r2=document.createElement('td'); r2.className='center'; r2.textContent=val(r,rand);
-    const r3=document.createElement('td'); r3.className='center'; r3.textContent=val(r,rand);
-    const r4=document.createElement('td'); r4.className='center'; r4.textContent=r.u||'';
-    const r5=document.createElement('td'); r5.className='center'; r5.textContent=r.r||'';
-    tr.append(r1,r2,r3,r4,r5); tb.appendChild(tr);
+  const tb = $(targetId);
+  tb.innerHTML = '';
+
+  const lg = groupInfo(left);
+  const rg = groupInfo(right);
+  const rand = mulberry32(seedFromString(seedText + targetId));
+  const rows = Math.max(left.length, right.length);
+
+  for(let i = 0; i < rows; i++){
+    const l = left[i] || {n:'', s:'', f:'', u:'', r:''};
+    const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
+    const tr = document.createElement('tr');
+
+    if(lg[i]){
+      const td = document.createElement('td');
+      td.className = 'vcol';
+      td.rowSpan = lg[i].count;
+      td.textContent = lg[i].name;
+      tr.appendChild(td);
+    }
+
+    const l1 = document.createElement('td');
+    l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
+
+    const l2 = document.createElement('td');
+    l2.className = 'center';
+    l2.textContent = val(l, rand);
+
+    const l3 = document.createElement('td');
+    l3.className = 'center';
+    l3.textContent = l.u || '';
+
+    const l4 = document.createElement('td');
+    l4.className = 'center';
+    l4.textContent = l.r || '';
+
+    tr.append(l1, l2, l3, l4);
+
+    if(rg[i]){
+      const td = document.createElement('td');
+      td.className = 'vcol';
+      td.rowSpan = rg[i].count;
+      td.textContent = rg[i].name;
+      tr.appendChild(td);
+    }
+
+    const r1 = document.createElement('td');
+    r1.innerHTML = `<span class="item">${r.n}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
+
+    const r2 = document.createElement('td');
+    r2.className = 'center';
+    r2.textContent = val(r, rand);
+
+    const r3 = document.createElement('td');
+    r3.className = 'center';
+    r3.textContent = r.u || '';
+
+    const r4 = document.createElement('td');
+    r4.className = 'center';
+    r4.textContent = r.r || '';
+
+    tr.append(r1, r2, r3, r4);
+    tb.appendChild(tr);
   }
 }
-function renderMiniVision(seedText){
-  const rand=mulberry32(seedFromString(seedText+'-vision'));
-  const right=(0.8+rand()*0.2).toFixed(1);
-  const left=(0.8+rand()*0.2).toFixed(1);
-  const height=Math.round(156+rand()*14);
-  const weight=Math.round(48+rand()*17);
-  const body=$('miniVisionBody');
-  body.innerHTML=`
-    <tr><td><span class="split-label">右眼 裸</span><br>${right}</td><td><span class="split-label">身高</span><br>${height}</td><td><span class="split-label">右耳</span><br>正常</td></tr>
-    <tr><td><span class="split-label">左眼 裸</span><br>${left}</td><td><span class="split-label">體重</span><br>${weight}</td><td><span class="split-label">左耳</span><br>正常</td></tr>
-    <tr><td><span class="split-label">色盲檢查</span><br>${fixed.colorBlind}</td><td></td><td></td></tr>`;
-}
-function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2Left',page2Left,[],seed+'-2L'); build('tbody2Main',[],page2Right,seed+'-2R'); renderMiniVision(seed)}
+function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
 $('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
 </script>
 </body>
