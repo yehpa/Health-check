@@ -36,6 +36,52 @@
     .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.018),transparent 58%),linear-gradient(rgba(255,255,255,.35),rgba(0,0,0,.02));pointer-events:none;mix-blend-mode:multiply}
     .title-band{margin:0 2mm 6px;border-top:2px solid #8d8d8d;border-bottom:2px solid #8d8d8d;background:linear-gradient(to bottom,#c3c3c3 0%,#e4e4e4 50%,#c8c8c8 100%);text-align:center;letter-spacing:.28em;font-size:36px;line-height:1.05;padding:3px 0 4px;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti",serif;font-weight:700}
     .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:14px;margin:0 6px 7px}
+    .page-two-layout{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:0;
+  align-items:start;
+}
+
+.page-two-left,
+.page-two-right{
+  display:flex;
+  flex-direction:column;
+}
+
+.mini-report{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0;
+  border:1px solid #444;
+  border-bottom:none;
+}
+
+.mini-report th,
+.mini-report td{
+  border:1px solid #444;
+  text-align:center;
+  vertical-align:middle;
+  padding:4px 6px;
+  font-size:15px;
+  line-height:1.2;
+  font-family:"DFKai-SB","BiauKai","KaiTi","PMingLiU",serif;
+  font-weight:700;
+}
+
+.mini-report th{
+  background:#efefea;
+}
+
+.report-right{
+  margin-top:0;
+}
+
+.report-left,
+.report-right{
+  width:100%;
+}
     .meta-line{display:flex;align-items:flex-end;min-height:20px}
     .meta-label{font-weight:700;white-space:nowrap;margin-right:4px}
     .meta-value{flex:1;min-width:0}
@@ -139,41 +185,75 @@
         </div>
       </section>
 
-      <section class="sheet">
-        <div class="title-band">健康檢查報告書</div>
-        <div class="meta">
-          <div class="meta-line"><span class="meta-label">姓名：</span><span class="meta-value" id="name2"></span></div>
-          <div class="meta-line"><span class="meta-label">出生年月日期：</span><span class="meta-value" id="birth2"></span></div>
-          <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender2"></span></div>
-          <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam2"></span></div>
-        </div>
-        <table class="report">
-          <thead>
-            <tr>
-             <tr>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-</tr>
-          </thead>
-          <tbody id="tbody2"></tbody>
-        </table>
-        <div class="footer-grid">
-          <div>
-            <div class="small">胸部 X 光檢查：無明顯異常</div>
-            <div class="small">皮膚疥蟲檢查：無明顯異常</div>
-            <div class="checks" style="margin-top:8px;">
-              <div style="font-weight:700;">■ 以上檢查之項目均無明顯異常。</div>
-              <div>□ 請注意飲食定期追蹤預防檢查。</div>
-              <div>□ 請進一步到醫院評估治療。</div>
-            </div>
-            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>報告醫師簽章：　　　　　　　　　</span></div>
-          </div>
-          <div>
-            <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
-            <div class="telbox double">祥顥醫院健康管理中心：02-29468776</div>
-          </div>
-        </div>
-      </section>
+     <section class="sheet">
+  <div class="title-band">健康檢查報告書</div>
+
+  <div class="meta">
+    ...
+  </div>
+
+  <div class="page-two-layout">
+    <div class="page-two-left">
+      <table class="report report-left">
+        <thead>
+          <tr>
+            <th class="vhead"></th>
+            <th>檢查項目</th>
+            <th style="width:72px">檢查數值</th>
+            <th style="width:54px">單位</th>
+            <th style="width:82px">標準值</th>
+          </tr>
+        </thead>
+        <tbody id="tbody2Left"></tbody>
+      </table>
+    </div>
+
+    <div class="page-two-right">
+      <table class="mini-report">
+        <tbody>
+          <tr>
+            <th>視力檢查</th>
+            <th>身高體重</th>
+            <th>聽力檢查</th>
+          </tr>
+          <tr>
+            <td id="visionRightRow">右眼　裸　1.0</td>
+            <td>身高</td>
+            <td>右耳</td>
+          </tr>
+          <tr>
+            <td id="visionLeftRow">左眼　裸　1.0</td>
+            <td id="heightRow">＊</td>
+            <td id="hearingRightRow">正常</td>
+          </tr>
+          <tr>
+            <td>色盲檢查</td>
+            <td>體重</td>
+            <td>左耳</td>
+          </tr>
+          <tr>
+            <td id="colorBlindRow">正常</td>
+            <td id="weightRow">＊</td>
+            <td id="hearingLeftRow">正常</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="report report-right">
+        <thead>
+          <tr>
+            <th class="vhead"></th>
+            <th>檢查項目</th>
+            <th style="width:72px">檢查數值</th>
+            <th style="width:54px">單位</th>
+            <th style="width:82px">標準值</th>
+          </tr>
+        </thead>
+        <tbody id="tbody2Right"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
     </div>
   </main>
 </div>
@@ -245,8 +325,6 @@ const page2Left = [
   {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
 ];
 const page2Right = [
-  {g:'視力檢查', n:'右眼裸／左眼裸', k:'vision', u:'', r:'身高體重 / 聽力檢查'},
-  {g:'', n:'色盲檢查', f:fixed.colorBlind, u:'', r:'正常'},
   {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'', n:'維他命 C', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'', n:'尿膽紅素（Bil）', f:'陰性（－）', u:'', r:'陰性（－）'},
@@ -301,7 +379,23 @@ function build(targetId,left,right,seedText){
       td.textContent = lg[i].name;
       tr.appendChild(td);
     }
+function renderPage2Top(seed){
+  const rand = mulberry32(seedFromString(seed + '-top'));
 
+  const visionRight = '右眼　裸　1.0';
+  const visionLeft  = '左眼　裸　1.0';
+
+  const height = Math.floor(155 + rand() * 21); // 155-175
+  const weight = Math.floor(45 + rand() * 21);  // 45-65
+
+  $('visionRightRow').textContent = visionRight;
+  $('visionLeftRow').textContent = visionLeft;
+  $('colorBlindRow').textContent = fixed.colorBlind || '正常';
+  $('heightRow').textContent = String(height);
+  $('weightRow').textContent = String(weight);
+  $('hearingRightRow').textContent = '正常';
+  $('hearingLeftRow').textContent = '正常';
+}
     const l1 = document.createElement('td');
     l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
 
@@ -346,7 +440,15 @@ function build(targetId,left,right,seedText){
     tb.appendChild(tr);
   }
 }
-function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
+function regenerate(){
+  renderMeta();
+  const seed = [inputs.name.value, inputs.gender.value, inputs.birth.value, inputs.exam.value].join('|');
+
+  build('tbody1', page1Left, page1Right, seed);
+  build('tbody2Left', page2Left, [], seed + '-2-left');
+  build('tbody2Right', page2Right, [], seed + '-2-right');
+  renderPage2Top(seed);
+}
 $('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
 </script>
 </body>
