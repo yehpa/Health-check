@@ -12,6 +12,16 @@
       --grid:#3a3a3a;
       --soft:#6b6b6b;
     }
+    /* 讓小表與主表外觀一致 */
+.mini-report, .report { border-collapse: collapse; table-layout: fixed; }
+.mini-report { width: 94mm; max-width:94mm; border:2.8px solid #222; background:#fbfbf8; }
+.mini-report th, .mini-report td { border:1.15px solid var(--grid); padding:3px 6px; font-size:12.8px; line-height:1.14; vertical-align:middle; background:#fbfbf7; text-align:center; }
+/* 讓數值在同一格分成多行，行距要小 */
+.mini-report .multi { white-space:normal; line-height:1.05; font-size:12.6px; text-align:left; padding-left:6px; }
+/* 若要把視力那格靠左並分行 */
+.mini-report .vision { text-align:left; padding-left:8px; }
+/* 保證整個右上區塊不會撐破頁面 */
+.page2-top { display:grid; grid-template-columns: 96mm 1fr; gap:0; align-items:start; }
     .vhead{
   width:23px;
   min-width:23px;
