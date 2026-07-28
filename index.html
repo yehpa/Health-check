@@ -98,7 +98,7 @@
 <body>
 <div class="app">
   <aside class="controls">
-    <h1>高相似版體檢報告</h1>
+    <h1>體檢報告</h1>
     <p>這版做成接近你提供範本 A 的雙頁灰階健檢單視覺，但仍是重新排版繪製，不是掃描底圖。你可直接貼上到 GitHub 的 HTML 使用。</p>
     <h2>基本資料</h2>
     <label>姓名</label>
@@ -359,6 +359,7 @@ function build(targetId,left,right,seedText){
     tb.appendChild(tr);
   }
 }
+  console.log(page1Right.map(x => x && x.n));
 function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
 $('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
 </script>
