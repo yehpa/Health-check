@@ -324,11 +324,11 @@ function build(targetId,left,right,seedText){
 
     const l3 = document.createElement('td');
     l3.className = 'center';
-    l3.textContent = l.u || '';
+    l3.textContent = l.u || '　';
 
     const l4 = document.createElement('td');
     l4.className = 'center';
-    l4.textContent = l.r || '';
+    l4.textContent = l.r || '　';
 
     tr.append(l1, l2, l3, l4);
 
@@ -349,11 +349,11 @@ function build(targetId,left,right,seedText){
 
     const r3 = document.createElement('td');
     r3.className = 'center';
-    r3.textContent = r.u || '';
+    r3.textContent = r.u || '　';
 
     const r4 = document.createElement('td');
     r4.className = 'center';
-    r4.textContent = r.r || '';
+    r4.textContent = r.r || '　';
 
     tr.append(r1, r2, r3, r4);
     tb.appendChild(tr);
