@@ -98,7 +98,7 @@
 <body>
 <div class="app">
   <aside class="controls">
-    <h1>體檢報告</h1>
+    <h1>高相似版體檢報告</h1>
     <p>這版做成接近你提供範本 A 的雙頁灰階健檢單視覺，但仍是重新排版繪製，不是掃描底圖。你可直接貼上到 GitHub 的 HTML 使用。</p>
     <h2>基本資料</h2>
     <label>姓名</label>
@@ -130,16 +130,13 @@
         <table class="report">
           <thead>
             <tr>
-  <th class="vhead"></th>
-  <th>檢查項目</th>
-  <th>檢查數值</th>
-  <th>單位</th>
-  <th>標準值</th>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
 </tr>
           </thead>
           <tbody id="tbody1"></tbody>
         </table>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>總評建議：以上檢查結果供臨床參考</span></div>
+        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>健檢醫師姓名：陳志明醫師</span><span>總評建議：以上檢查結果供臨床參考</span></div>
         <div class="footer-grid" style="margin-top:8px;">
           <div>
             <div class="checks">
@@ -162,19 +159,12 @@
         </div>
         <table class="report">
           <thead>
-  <tr>
-    <th class="vhead"></th>
-    <th>檢查項目</th>
-    <th style="width:72px">檢查數值</th>
-    <th style="width:54px">單位</th>
-    <th style="width:82px">標準值</th>
-    <th class="vhead"></th>
-    <th>檢查項目</th>
-    <th style="width:72px">檢查數值</th>
-    <th style="width:54px">單位</th>
-    <th style="width:82px">標準值</th>
-  </tr>
-</thead>
+            <tr>
+             <tr>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
+</tr>
+          </thead>
           <tbody id="tbody2"></tbody>
         </table>
         <div class="footer-grid">
@@ -265,7 +255,7 @@ const page2Left = [
   {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
 ];
 const page2Right = [
-  {g:'視力檢查', n:'右眼 裸0.8／左眼 裸1.0', k:'vision', u:'', r:'身高體重 / 聽力檢查'},
+  {g:'', n:'右眼 裸0.8／左眼 裸1.0', k:'vision', u:'', r:'身高體重 / 聽力檢查'},
   {g:'', n:'色盲檢查', f:fixed.colorBlind, u:'', r:'正常'},
   {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', u:'', r:'陰性（－）'},
   {g:'', n:'維他命 C', f:'陰性（－）', u:'', r:'陰性（－）'},
@@ -331,11 +321,11 @@ function build(targetId,left,right,seedText){
 
     const l3 = document.createElement('td');
     l3.className = 'center';
-    l3.textContent = safeText(l.u);
+    l3.textContent = l.u || '';
 
     const l4 = document.createElement('td');
     l4.className = 'center';
-    l4.textContent = safeText(l.r);
+    l4.textContent = l.r || '';
 
     tr.append(l1, l2, l3, l4);
 
@@ -356,11 +346,11 @@ function build(targetId,left,right,seedText){
 
     const r3 = document.createElement('td');
     r3.className = 'center';
-    r3.textContent = safeText(r.u);
+    r3.textContent = r.u || '';
 
     const r4 = document.createElement('td');
     r4.className = 'center';
-    r4.textContent = safeText(r.r);
+    r4.textContent = r.r || '';
 
     tr.append(r1, r2, r3, r4);
     tb.appendChild(tr);
