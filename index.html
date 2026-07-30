@@ -1,368 +1,996 @@
+這是完整的 `index.html` 修正後程式碼：
+
+```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>high-similarity-health-report</title>
+  <title>健康檢查報告書 - 祥顥醫院健康管理中心</title>
   <style>
-    :root{
-      --page-bg:#e8e5de;
-      --paper:#f7f7f3;
-      --ink:#1b1b1b;
-      --grid:#3a3a3a;
-      --soft:#6b6b6b;
+    :root {
+      --page-bg: #e8e5de;
+      --paper: #ffffff;
+      --ink: #1b1b1b;
+      --grid: #333333;
+      --th-bg: #d4d4cd;
+      --vcol-bg: #e0e0d8;
     }
-    /* 讓小表與主表外觀一致 */
-.mini-report, .report { border-collapse: collapse; table-layout: fixed; }
-.mini-report { width: 94mm; max-width:94mm; border:2.8px solid #222; background:#fbfbf8; }
-.mini-report th, .mini-report td { border:1.15px solid var(--grid); padding:3px 6px; font-size:12.8px; line-height:1.14; vertical-align:middle; background:#fbfbf7; text-align:center; }
-/* 讓數值在同一格分成多行，行距要小 */
-.mini-report .multi { white-space:normal; line-height:1.05; font-size:12.6px; text-align:left; padding-left:6px; }
-/* 若要把視力那格靠左並分行 */
-.mini-report .vision { text-align:left; padding-left:8px; }
-/* 保證整個右上區塊不會撐破頁面 */
-.page2-top { display:grid; grid-template-columns: 96mm 1fr; gap:0; align-items:start; }
-    .vhead{
-  width:23px;
-  min-width:23px;
-  padding:0 !important;
-  background:#d8d8d2;
-}
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--page-bg);color:var(--ink);font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti","Noto Serif TC",serif}
-    .app{display:grid;grid-template-columns:350px 1fr;min-height:100vh}
-    .controls{background:#f2eee6;border-right:1px solid #cfc7bb;padding:24px;position:sticky;top:0;height:100vh;overflow:auto}
-    .controls h1{margin:0 0 10px;font-size:26px;line-height:1.2}
-    .controls p{font-size:13px;line-height:1.7;color:#5a554d;margin:0 0 16px}
-    .controls h2{font-size:15px;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid #cfc7bb}
-    label{display:block;font-size:13px;margin:0 0 6px}
-    input,select,button{width:100%;padding:10px 12px;border:1px solid #b8afa2;background:#fff;font:inherit;font-size:14px;margin-bottom:10px}
-    button{background:#232323;color:#fff;border:none;font-weight:700;cursor:pointer}
-    button.alt{background:#70685c}
-    .hint{font-size:12px;line-height:1.6;color:#665f54}
-    .stage{padding:24px;overflow:auto}
-    .sheet-stack{width:210mm;margin:0 auto;display:block}
-    .sheet{width:190mm;min-height:277mm;background:var(--paper);padding:9mm 8mm 8mm;margin:0 auto 18px;box-shadow:0 12px 28px rgba(0,0,0,.08);position:relative;overflow:hidden}
-    .sheet::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.018),transparent 58%),linear-gradient(rgba(255,255,255,.35),rgba(0,0,0,.02));pointer-events:none;mix-blend-mode:multiply}
-    .title-band{margin:0 2mm 6px;border-top:2px solid #8d8d8d;border-bottom:2px solid #8d8d8d;background:linear-gradient(to bottom,#c3c3c3 0%,#e4e4e4 50%,#c8c8c8 100%);text-align:center;letter-spacing:.28em;font-size:36px;line-height:1.05;padding:3px 0 4px;font-family:"DFKai-SB","BiauKai","KaiTi","STKaiti",serif;font-weight:700}
-    .meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:14px;margin:0 6px 7px}
-    .meta-line{display:flex;align-items:flex-end;min-height:20px}
-    .meta-label{font-weight:700;white-space:nowrap;margin-right:4px}
-    .meta-value{flex:1;min-width:0}
-    table.report{width:100%;border-collapse:collapse;table-layout:fixed;background:#fbfbf8;border:2.8px solid #222}
-    table.report th,table.report td{border:1.15px solid var(--grid);padding:3px 4px;vertical-align:middle;line-height:1.12;font-size:12.8px;background:#fbfbf7}
-    table.report th{font-weight:700;text-align:center;background:#d8d8d2}
-    .vcol{
-  writing-mode:vertical-rl;
-  text-orientation:upright;
-  text-align:center;
-  letter-spacing:1px;
-  font-weight:700;
-  background:#e2e2db;
-  width:23px;
-  min-width:23px;
-  padding:4px 1px!important;
-}
-    .item{font-weight:700}
-    .sub{display:block;font-size:11px;font-weight:600;margin-top:1px}
-    .center{text-align:center}
-    .small{font-size:12px}
-    .footer-grid{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:end;margin-top:10px}
-    .checks{font-size:11.5px;line-height:1.75}
-    .checks div::before{content:"";margin-right:0}
-    .legend{font-size:11.5px;line-height:1.55;margin-top:6px}
-    .blessing{text-align:center;color:#6a6a6a;font-size:17px;line-height:1.6;letter-spacing:.16em;padding-bottom:6px}
-    .telbox{border:1.45px solid var(--grid);padding:5px 8px;text-align:center;font-size:11.5px;background:#f7f7f3}.telbox.double{border:3px double #2b2b2b}
-    .sigline{display:flex;justify-content:space-between;gap:16px;margin-top:8px;font-size:12px;color:#333;border-top:1px solid #666;padding-top:5px}
-    @media print{
-      body{background:#fff}
-      .controls{display:none}
-      .app{display:block}
-      .stage{padding:0}
-      .sheet-stack{width:auto}
-      .sheet{box-shadow:none;margin:0 auto;width:190mm;min-height:277mm;page-break-after:always;break-after:page}
-      .sheet:last-child{page-break-after:auto}
-      @page{size:A4 portrait;margin:10mm}
+
+    * {
+      box-sizing: border-box;
     }
-    @media (max-width:1200px){
-      .app{grid-template-columns:1fr}
-      .controls{position:relative;height:auto;border-right:none;border-bottom:1px solid #cfc7bb}
-      .stage{padding:16px}
-      .sheet-stack{width:100%;overflow:auto}
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", "Noto Serif TC", serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 100vh;
+    }
+
+    .controls {
+      background: #f2eee6;
+      border-right: 1px solid #cfc7bb;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .controls h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .controls p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #5a554d;
+      margin: 0 0 16px;
+    }
+
+    .controls h2 {
+      font-size: 14px;
+      margin: 16px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #cfc7bb;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin: 0 0 4px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #b8afa2;
+      background: #fff;
+      font: inherit;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #232323;
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px;
+      margin-top: 4px;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    button.alt {
+      background: #60584c;
+    }
+
+    .mode-switch {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .mode-switch label {
+      font-weight: normal;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mode-switch input {
+      width: auto;
+      margin: 0;
+    }
+
+    .stage {
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    .sheet-stack {
+      width: 210mm;
+      margin: 0 auto;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--paper);
+      padding: 10mm 12mm 10mm;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+      color: #000;
+    }
+
+    /* 頂部標題列 (灰階漸層與上下邊框) */
+    .title-band {
+      margin: 0 0 6px;
+      border-top: 2px solid #333;
+      border-bottom: 2px solid #333;
+      background: linear-gradient(to bottom, #b5b5b5 0%, #e8e8e8 50%, #b5b5b5 100%);
+      text-align: center;
+      letter-spacing: 0.35em;
+      font-size: 32px;
+      line-height: 1.15;
+      padding: 2px 0 3px;
+      font-weight: bold;
+      font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
+    }
+
+    /* 基本資料區 */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2px 16px;
+      font-size: 14.5px;
+      margin-bottom: 6px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .meta-line {
+      display: flex;
+      align-items: center;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .meta-label {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .meta-val {
+      min-width: 30px;
+    }
+
+    /* 表格通用樣式 */
+    table.report-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 2px solid #222;
+      font-size: 12px;
+    }
+
+    table.report-table th, table.report-table td {
+      border: 1px solid var(--grid);
+      padding: 2px 3px;
+      vertical-align: middle;
+      line-height: 1.15;
+    }
+
+    table.report-table th {
+      font-weight: bold;
+      text-align: center;
+      background: var(--th-bg);
+      font-size: 12.5px;
+    }
+
+    /* 垂直分類欄 */
+    .vcol {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      text-align: center;
+      letter-spacing: 1px;
+      font-weight: bold;
+      background: var(--vcol-bg);
+      width: 22px;
+      min-width: 22px;
+      max-width: 22px;
+      padding: 4px 1px !important;
+      font-size: 12px;
+    }
+
+    /* 數值單元格: 左邊數值/符號，右邊單位 */
+    .val-cell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 2px;
+    }
+
+    .val-num {
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .val-unit {
+      text-align: right;
+      font-style: italic;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 11.5px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .item-en {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 11.5px;
+    }
+
+    .item-zh {
+      font-size: 12px;
+    }
+
+    .sub-item {
+      display: block;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* 頁面二頂部綜合表格 */
+    table.top-grid {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 2px solid #222;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    table.top-grid th, table.top-grid td {
+      border: 1px solid var(--grid);
+      padding: 2px 4px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 1.15;
+    }
+
+    table.top-grid th {
+      background: var(--th-bg);
+      font-weight: bold;
+    }
+
+    /* 橫幅分隔標題 (血液檢查報告) */
+    .section-banner {
+      background: var(--th-bg);
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 0.2em;
+      border: 1px solid var(--grid);
+      padding: 2px 0;
+      font-size: 12.5px;
+    }
+
+    /* 底部區域 */
+    .footer-section {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .check-list {
+      font-size: 11.5px;
+      line-height: 1.6;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .check-box-filled {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #444;
+      border: 1px solid #000;
+    }
+
+    .check-box-empty {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border: 1px solid #333;
+    }
+
+    .legend-text {
+      font-size: 11px;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .stamp-box {
+      border: 1.5px solid #222;
+      padding: 2px 6px;
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11.5px;
+      line-height: 1.35;
+      background: #fff;
+    }
+
+    .blessing-text {
+      text-align: center;
+      font-family: "KaiTi", "DFKai-SB", "STKaiti", cursive, serif;
+      font-size: 19px;
+      line-height: 1.45;
+      letter-spacing: 0.15em;
+      color: #222;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .hospital-box {
+      border: 1.5px solid #222;
+      padding: 4px 8px;
+      text-align: center;
+      font-size: 11.5px;
+      background: #fff;
+      font-weight: bold;
+    }
+
+    .hospital-box.double-border {
+      border: 3px double #222;
+    }
+
+    .notes-line {
+      font-size: 12px;
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .controls {
+        display: none !important;
+      }
+      .app {
+        display: block;
+      }
+      .stage {
+        padding: 0;
+      }
+      .sheet-stack {
+        width: 100%;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        height: 297mm;
+        padding: 10mm 12mm;
+        page-break-after: always;
+        break-after: page;
+      }
+      .sheet:last-child {
+        page-break-after: auto;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+      .controls {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #cfc7bb;
+      }
+      .stage {
+        padding: 10px;
+      }
+      .sheet-stack {
+        width: 100%;
+        overflow-x: auto;
+      }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <div class="app">
+  <!-- 控制側邊欄 -->
   <aside class="controls">
-    <h1>高相似版體檢報告</h1>
-    <p>這版做成接近你提供範本 A 的雙頁灰階健檢單視覺，但仍是重新排版繪製，不是掃描底圖。你可直接貼上到 GitHub 的 HTML 使用。</p>
-    <h2>基本資料</h2>
-    <label>姓名</label>
-    <input id="name" value="王小雯">
-    <label>性別</label>
+    <h1>健康檢查報告書</h1>
+    <p>1:1 高度還原傳統灰階健檢報告單樣式。可直接預覽與列印 PDF。</p>
+
+    <h2>顯示模式</h2>
+    <div class="mode-switch">
+      <label><input type="radio" name="viewMode" value="sample" checked id="modeSample"> 範本圖檔模式 (星號與符號)</label>
+    </div>
+    <div class="mode-switch">
+      <label><input type="radio" name="viewMode" value="dynamic" id="modeDynamic"> 動態數值模式 (隨機生成數據)</label>
+    </div>
+
+    <h2>基本資料編輯</h2>
+    <label for="name">姓名</label>
+    <input id="name" value="" placeholder="請輸入姓名">
+
+    <label for="gender">性別</label>
     <select id="gender">
       <option value="女" selected>女</option>
       <option value="男">男</option>
     </select>
-    <label>出生年月日期</label>
-    <input id="birth" type="date" value="1994-08-16">
-    <label>受理檢查日期</label>
-    <input id="exam" type="date" value="2025-03-25">
-    <button id="regen">重新生成</button>
+
+    <label for="code">健康編號</label>
+    <input id="code" value="019">
+
+    <label for="birth">出生年月日期</label>
+    <input id="birth" type="text" value="    年    月    日" placeholder="    年    月    日">
+
+    <label for="exam">受理檢查日期</label>
+    <input id="exam" value="114 年 03 月 25 日">
+
+    <button id="regenBtn">更新 / 重新生成數據</button>
     <button class="alt" id="printBtn">列印 / 另存 PDF</button>
-    <p class="hint">固定結果會維持一致；可變項目會依姓名與日期生成不同但正常範圍內的值。版面已針對 A4 直式置中。</p>
   </aside>
 
+  <!-- 主顯示區 (兩頁 A4 報告) -->
   <main class="stage">
     <div class="sheet-stack">
-      <section class="sheet">
-        <div class="title-band">健康檢查報告書</div>
-        <div class="meta">
-          <div class="meta-line"><span class="meta-label">姓名：</span><span class="meta-value" id="name1"></span></div>
-          <div class="meta-line"><span class="meta-label">出生年月日期：</span><span class="meta-value" id="birth1"></span></div>
-          <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender1"></span></div>
-          <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam1"></span></div>
+
+      <!-- ================= 頁面 一 ================= -->
+      <section class="sheet" id="page1">
+        <div class="title-band">健 康 檢 查 報 告 書</div>
+        
+        <div class="meta-grid">
+          <div class="meta-line">
+            <span class="meta-label">姓　名：</span>
+            <span class="meta-val" id="p1_name"></span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-label">出生年月日期：</span>
+            <span class="meta-val" id="p1_birth">    年    月    日</span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-item">
+              <span class="meta-label">性　別：</span>
+              <span class="meta-val" id="p1_gender">女</span>
+            </span>
+            <span class="meta-item" style="margin-left: 24px;">
+              <span class="meta-label">健康編號：</span>
+              <span class="meta-val" id="p1_code">019</span>
+            </span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-label">受理檢查日期：</span>
+            <span class="meta-val" id="p1_exam">114 年 03 月 25 日</span>
+          </div>
         </div>
-        <table class="report">
+
+        <table class="report-table">
           <thead>
             <tr>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:72px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-</tr>
+              <th style="width:22px;"></th>
+              <th style="width:145px;">檢查項目</th>
+              <th style="width:105px;">檢查數值</th>
+              <th style="width:105px;">標準值</th>
+              <th style="width:22px;"></th>
+              <th style="width:145px;">檢查項目</th>
+              <th style="width:105px;">檢查數值</th>
+              <th style="width:105px;">標準值</th>
+            </tr>
           </thead>
-          <tbody id="tbody1"></tbody>
+          <tbody id="tbody1">
+            <!-- JS 動態生成第一頁內容 -->
+          </tbody>
         </table>
-        <div class="checks" style="margin-top:8px;">
-              <div style="font-weight:700;">■ 以上檢查之項目均無明顯異常。</div>
-              <div>□ 請注意飲食定期追蹤預防檢查。</div>
-              <div>□ 請進一步到醫院評估治療。</div>
-            </div>
-        <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，為加強注意。</div><div class="sigline"><span>總評建議：以上檢查結果供臨床參考</span></div>
-        <div class="footer-grid" style="margin-top:8px;">
+
+        <div class="footer-section">
           <div>
-            <div class="checks">
-              <div>以上檢查項目均明顯異常。</div>
-              <div>請注意飲食定期追蹤檢查。</div>
-              <div>請進一步到醫院診查治療。</div>
+            <div class="check-list">
+              <div class="check-item"><span class="check-box-filled"></span> 以上檢查項目無明顯異常。</div>
+              <div class="check-item"><span class="check-box-empty"></span> 請注意飲食定期追蹤檢查。</div>
+              <div class="check-item"><span class="check-box-empty"></span> 請進一步到醫院診查治療。</div>
+            </div>
+            <div class="legend-text">
+              空白表示未檢查<br>
+              藍色表示正常<br>
+              紅色表示不在標準範圍內。
+            </div>
+            <div class="stamp-box">
+              醫　字第006393號<br>
+              師　趙　泰
             </div>
           </div>
-          <div class="telbox">祥顥醫院健康管理中心：02-29468776</div>
+
+          <div>
+            <div class="hospital-box">
+              祥顥醫院健康管理中心：02-29468776
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="sheet">
-        <div class="title-band">健康檢查報告書</div>
-        <div class="meta">
-          <div class="meta-line"><span class="meta-label">姓名：</span><span class="meta-value" id="name2"></span></div>
-          <div class="meta-line"><span class="meta-label">出生年月日期：</span><span class="meta-value" id="birth2"></span></div>
-          <div class="meta-line"><span class="meta-label">性別：</span><span class="meta-value" id="gender2"></span></div>
-          <div class="meta-line"><span class="meta-label">受理檢查日期：</span><span class="meta-value" id="exam2"></span></div>
+      <!-- ================= 頁面 二 ================= -->
+      <section class="sheet" id="page2">
+        <div class="title-band">健 康 檢 查 報 告 書</div>
+
+        <div class="meta-grid">
+          <div class="meta-line">
+            <span class="meta-label">姓　名：</span>
+            <span class="meta-val" id="p2_name"></span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-label">出生年月日期：</span>
+            <span class="meta-val" id="p2_birth">    年    月    日</span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-item">
+              <span class="meta-label">性　別：</span>
+              <span class="meta-val" id="p2_gender">女</span>
+            </span>
+            <span class="meta-item" style="margin-left: 24px;">
+              <span class="meta-label">健康編號：</span>
+              <span class="meta-val" id="p2_code">019</span>
+            </span>
+          </div>
+          <div class="meta-line">
+            <span class="meta-label">受理檢查日期：</span>
+            <span class="meta-val" id="p2_exam">114 年 03 月 25 日</span>
+          </div>
         </div>
-        <table class="report">
+
+        <!-- 頁面二頂部綜合表格 (血壓/視力/身高體重/聽力) -->
+        <table class="top-grid">
           <thead>
             <tr>
-             <tr>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:180px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-  <th class="vhead"></th><th>檢查項目</th><th style="width:180px">檢查數值</th><th style="width:54px">單位</th><th style="width:82px">標準值</th>
-</tr>
+              <th style="width:130px;">檢查項目</th>
+              <th style="width:140px;">檢查數值</th>
+              <th style="width:150px;">視力檢查</th>
+              <th style="width:110px;">身高體重</th>
+              <th style="width:110px;">聽力檢查</th>
+            </tr>
           </thead>
-          <tbody id="tbody2"></tbody>
+          <tbody>
+            <tr>
+              <td>血壓(收縮壓)</td>
+              <td>
+                <div class="val-cell">
+                  <span style="font-size:11px;">標準值 90~140</span>
+                  <span class="val-num" id="p2_sbp">*</span>
+                </div>
+              </td>
+              <td>
+                <div class="val-cell">
+                  <span>右眼 裸</span>
+                  <span class="val-num" id="p2_r_eye">*</span>
+                </div>
+              </td>
+              <td>身高</td>
+              <td>右耳</td>
+            </tr>
+            <tr>
+              <td>血壓(舒張壓)</td>
+              <td>
+                <div class="val-cell">
+                  <span style="font-size:11px;">標準值 60~90</span>
+                  <span class="val-num" id="p2_dbp">*</span>
+                </div>
+              </td>
+              <td>
+                <div class="val-cell">
+                  <span>左眼 裸</span>
+                  <span class="val-num" id="p2_l_eye">*</span>
+                </div>
+              </td>
+              <td class="val-num" id="p2_height">*</td>
+              <td id="p2_r_ear">正常</td>
+            </tr>
+            <tr>
+              <td>脈搏指數</td>
+              <td>
+                <div class="val-cell">
+                  <span style="font-size:11px;">平均值 60~100</span>
+                  <span class="val-num" id="p2_pulse">*</span>
+                </div>
+              </td>
+              <td>色盲檢查</td>
+              <td>體重</td>
+              <td>左耳</td>
+            </tr>
+            <tr>
+              <td>身體質量指數 BMI</td>
+              <td>
+                <div class="val-cell">
+                  <span style="font-size:11px;">平均值 18~24</span>
+                  <span class="val-num" id="p2_bmi">*</span>
+                </div>
+              </td>
+              <td id="p2_color">正常</td>
+              <td class="val-num" id="p2_weight">*</td>
+              <td id="p2_l_ear">正常</td>
+            </tr>
+          </tbody>
         </table>
-        <div class="footer-grid">
+
+        <!-- 頁面二中部主要表格 -->
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th style="width:22px;"></th>
+              <th style="width:145px;">檢查項目</th>
+              <th style="width:105px;">檢查數值</th>
+              <th style="width:105px;">標準值</th>
+              <th style="width:22px;"></th>
+              <th style="width:145px;">檢查項目</th>
+              <th style="width:105px;">檢查數值</th>
+              <th style="width:105px;">標準值</th>
+            </tr>
+          </thead>
+          <tbody id="tbody2">
+            <!-- JS 動態生成第二頁內容 -->
+          </tbody>
+        </table>
+
+        <div class="notes-line">胸部X光檢查：無明顯異常</div>
+        <div class="notes-line">皮膚疥蟲檢查：無明顯異常</div>
+
+        <div class="footer-section">
           <div>
-            <div class="small">胸部 X 光檢查：無明顯異常</div>
-            <div class="small">皮膚疥蟲檢查：無明顯異常</div>
-            <div class="checks" style="margin-top:8px;">
-              <div style="font-weight:700;">■ 以上檢查之項目均無明顯異常。</div>
-              <div>□ 請注意飲食定期追蹤預防檢查。</div>
-              <div>□ 請進一步到醫院評估治療。</div>
+            <div class="check-list" style="margin-top:4px;">
+              <div class="check-item"><span class="check-box-empty"></span> 以上檢查之項目均無明顯異常。</div>
+              <div class="check-item"><span class="check-box-empty"></span> 請注意飲食定期追蹤預防檢查。</div>
+              <div class="check-item"><span class="check-box-empty"></span> 請進一步到醫院診查治療。</div>
             </div>
-            <div class="legend">▲ 空白表示未檢查、藍色表示正常。<br>▼ 紅色表示不在標準範圍內，加強注意。</div><div class="sigline"><span>報告醫師簽章：　　　　　　　　　</span></div>
+            <div class="legend-text">
+              ▲空白表示未檢查、藍色表示正常。<br>
+              ▼紅色表示不在標準範圍內、應加注意。
+            </div>
+            <div class="stamp-box">
+              醫字第006393號<br>
+              醫師 趙 泰
+            </div>
           </div>
+
           <div>
-            <div class="blessing">祝您<br>健康快樂<br>順心如意</div>
-            <div class="telbox double">祥顥醫院健康管理中心：02-29468776</div>
+            <div class="blessing-text">
+              祝您<br>
+              健康快樂<br>
+              順心如意
+            </div>
+            <div class="hospital-box double-border">
+              祥顥醫院健康管理中心：02-29468776
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   </main>
 </div>
 
 <script>
-const fixed = {
-  colorBlind:'正常', urineProtein:'陰性（－）', urineBlood:'陰性（－）', urineSugar:'陰性（－）',
-  hbsag:'陰性（－）', hbsab:'陽性（＋）', hcv:'陰性（－）', vdrl:'陰性（－）',
-  bacillary:'no growth', amoeba:'not found', parasite:'not found'
-};
-
-const page1Left = [
-  {g:'血液常規造血功能檢查', n:'WBC', s:'白血球', k:'wbc', u:'cumm', r:'4000-11000', d:0, min:4200, max:9800},
-  {g:'', n:'RBC', s:'紅血球', k:'rbc', u:'m/cumm', r:'女:4.0-5.2', d:2, min:4.12, max:5.08},
-  {g:'', n:'Hb', s:'血色素', k:'hb', u:'g/dl', r:'女:12.0-16.0', d:1, min:12.3, max:15.6},
-  {g:'', n:'HCT', s:'紅血球容積', k:'hct', u:'%', r:'女:35.0-48.0', d:1, min:37.0, max:46.3},
-  {g:'', n:'MCV', s:'平均紅血球容積', k:'mcv', u:'fL', r:'80-106', d:1, min:82, max:100},
-  {g:'', n:'MCH', s:'平均紅血血球血紅素量', k:'mch', u:'pg', r:'27-34', d:1, min:27.6, max:33.0},
-  {g:'', n:'MCHC', s:'球紅血球示濃度', k:'mchc', u:'g/dl', r:'31-36', d:1, min:31.7, max:35.2},
-  {g:'', n:'Platelet', s:'血小板', k:'platelet', u:'K/cumm', r:'140-440', d:0, min:175, max:388},
-  {g:'', n:'Neut', s:'嗜中性白血球', k:'neut', u:'%', r:'45-75', d:1, min:49, max:70},
-  {g:'', n:'LYM%', s:'淋巴百分比', k:'lym', u:'%', r:'18-45', d:1, min:21, max:39},
-  {g:'', n:'MONO%', s:'單核球百分比', k:'mono', u:'%', r:'0-10', d:1, min:2, max:8},
-  {g:'', n:'Eosin', s:'嗜酸性白血球', k:'eosin', u:'%', r:'0-6', d:1, min:0.3, max:4.5},
-  {g:'', n:'Basc', s:'嗜鹼性白血球', k:'basc', u:'%', r:'0-1', d:1, min:0.1, max:0.7},
-  {g:'', n:'RDW', s:'血小板平均分佈', k:'rdw', u:'%', r:'2-31.0', d:1, min:11.2, max:15.4},
-  {g:'', n:'PDW', s:'血小板平均寬度', k:'pdw', u:'%', r:'10.0-22.0', d:1, min:11.4, max:18.6},
-  {g:'', n:'MPV', s:'平均血小板體積', k:'mpv', u:'%', r:'4-13.0', d:1, min:7.1, max:11.3},
-  {g:'', n:'PLCR', s:'平均小血小板容積', k:'plcr', u:'%', r:'10.0-45.0', d:1, min:14.0, max:36.0},
-  {g:'', n:'LIC', s:'不成熟細胞', f:'0', u:'%', r:'0'}
-];
-const page1Right = [
-  {g:'總肝功能檢查', n:'ALK-P', s:'鹼性磷酸酵素', k:'alk', u:'U/L', r:'35-141', d:0, min:45, max:122},
-  {g:'', n:'T-P', s:'總蛋白量', k:'tp', u:'mg/dl', r:'6.0-8.7', d:1, min:6.3, max:8.1},
-  {g:'', n:'ALB', s:'白蛋白量', k:'alb', u:'mg/dl', r:'3.5-5.5', d:1, min:3.9, max:5.0},
-  {g:'', n:'GLO', s:'球蛋白量', k:'glo', u:'mg/dl', r:'2.0-3.6', d:1, min:2.3, max:3.3},
-  {g:'', n:'A/G', s:'白蛋白/球蛋白比值', k:'ag', u:'%', r:'1.1-2.5', d:2, min:1.24, max:2.10},
-  {g:'', n:'γ-GT', s:'麩胺醯轉移酵素', k:'ggt', u:'U/L', r:'5-50', d:0, min:9, max:36},
-  {g:'膽功能', n:'T-Bil', s:'總膽紅素', k:'tbil', u:'mg/dl', r:'0.0-1.5', d:1, min:0.2, max:1.0},
-  {g:'', n:'D-Bil', s:'直接膽紅素', k:'dbil', u:'mg/dl', r:'0.0-0.7', d:1, min:0.0, max:0.4},
-  {g:'胃', n:'HP', s:'幽門桿菌檢查', f:'1.2（－）', u:'+/-', r:'1.2↓(－)'},
-  {g:'心臟功能', n:'LDH', s:'乳酸脫氫酵素', k:'ldh', u:'U/L', r:'135-225', d:0, min:145, max:212},
-  {g:'', n:'CPK', s:'肌酸磷化酵素', k:'cpk', u:'U/L', r:'30-308', d:0, min:48, max:232},
-  {g:'血管指數', n:'HDL', s:'高密度膽固醇', k:'hdl', u:'mg/ml', r:'↑30', d:0, min:41, max:68},
-  {g:'', n:'LDL', s:'低密度膽固醇', k:'ldl', u:'mg/ml', r:'↓130', d:0, min:72, max:122},
-  {g:'', n:'Risk', s:'中風指數', k:'risk', u:'%', r:'1.5-5.5', d:1, min:1.9, max:4.7},
-  {g:'血清學檢查', n:'CRP', s:'炎症反應', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
-  {g:'', n:'RA', s:'類風濕關節炎', f:'陰性（－）', u:'+/-', r:'陰性(－)'},
-  {g:'', n:'H.A.V. Igm', s:'A型肝炎', f:'-未感染', u:'+/-', r:'-未感染'},
-  {g:'', n:'Widal', s:'傷寒檢查', f:'陰性（－）', u:'+/-', r:'陰性(－)'}
-];
-const page2Left = [
-  {g:'一般檢查', n:'血壓（收縮壓）', k:'sbp', u:'mmHg', r:'標準值 90-140', d:0, min:100, max:128},
-  {g:'', n:'血壓（舒張壓）', k:'dbp', u:'mmHg', r:'標準值 60-90', d:0, min:64, max:84},
-  {g:'', n:'脈搏指數', k:'pulse', u:'/min', r:'平均值 60-100', d:0, min:65, max:90},
-  {g:'', n:'身體質量指數 BMI', k:'bmi', u:'', r:'平均值 18-24', d:1, min:18.4, max:23.5},
-  {g:'尿液檢查', n:'尿蛋白（Protein）', f:fixed.urineProtein, u:'', r:'陰性（－）'},
-  {g:'', n:'尿潛血（OB）', f:fixed.urineBlood, u:'', r:'陰性（－）'},
-  {g:'', n:'尿糖（Glucose）', f:fixed.urineSugar, u:'', r:'陰性（－）'},
-  {g:'', n:'酸鹼值（PH）', k:'ph', u:'', r:'5.0-8.0', d:1, min:5.7, max:7.2},
-  {g:'', n:'酮體（Ket）', f:'陰性（－）', u:'', r:'陰性（－）'},
-  {g:'腎功能', n:'SGPT', s:'肝功能檢查', k:'sgpt', u:'U/ml', r:'5-42', d:0, min:11, max:35},
-  {g:'', n:'BUN', s:'尿素氮', k:'bun', u:'mg/dl', r:'4.7-23', d:1, min:6.8, max:19.4},
-  {g:'', n:'Creatinine', s:'肌酸酐', k:'cr', u:'mg/dl', r:'0.1-1.5', d:1, min:0.5, max:1.2},
-  {g:'', n:'Unc Acid', s:'尿酸', k:'uric', u:'mg/dl', r:'2.0-7.0', d:1, min:2.9, max:6.3},
-  {g:'血脂肪', n:'TG', s:'中性脂肪', k:'tg', u:'mg/dl', r:'30-150', d:0, min:45, max:130},
-  {g:'', n:'T-CHO', s:'總膽固醇', k:'cho', u:'mg/dl', r:'100-200', d:0, min:126, max:194},
-  {g:'血糖', n:'AC', s:'飯前血糖', f:'', u:'mg/dl', r:'70-110'},
-  {g:'', n:'PC', s:'飯後血糖', f:'', u:'mg/dl', r:'90-120'}
-];
-const page2Right = [
-  {g:'', n:'右眼 裸0.8／左眼 裸1.0', k:'vision', u:'', r:'身高體重 / 聽力檢查'},
-  {g:'', n:'色盲檢查', f:fixed.colorBlind, u:'', r:'正常'},
-  {g:'尿液檢查', n:'亞硝酸（Nitrite）', f:'陰性（－）', u:'', r:'陰性（－）'},
-  {g:'', n:'維他命 C', f:'陰性（－）', u:'', r:'陰性（－）'},
-  {g:'', n:'尿膽紅素（Bil）', f:'陰性（－）', u:'', r:'陰性（－）'},
-  {g:'', n:'比重（SP,GR）', k:'spgr', u:'', r:'1.000-1.030', d:3, min:1.008, max:1.025},
-  {g:'', n:'尿膽素原（Uro）', f:'陰性（－）', u:'', r:'陰性（－）'},
-  {g:'肝功能檢查', n:'SGOT', k:'sgot', u:'U/ml', r:'5-40', d:0, min:10, max:34},
-  {g:'肝炎病毒', n:'B型肝炎表面抗原', f:fixed.hbsag, u:'+/-', r:'-未帶原 / +帶原者'},
-  {g:'', n:'B型肝炎表面抗體', f:fixed.hbsab, u:'+/-', r:'-無抗體 / +有抗體'},
-  {g:'', n:'B型肝炎核心抗體', f:'陰性（－）', u:'+/-', r:'陰性（－）'},
-  {g:'', n:'HCV C型肝炎', f:fixed.hcv, u:'+/-', r:'-未感染 / +已感染'},
-  {g:'', n:'VDRL', s:'梅毒反應', f:fixed.vdrl, u:'+/-', r:'陰性（－）'},
-  {g:'糞便常規', n:'桿菌性痢疾', f:'no growth', u:'', r:''},
-  {g:'', n:'阿米巴性痢疾', f:'not found', u:'', r:''},
-  {g:'', n:'寄生蟲', f:'not found', u:'', r:''},
-  
+// 第一頁左側資料項目
+const p1LeftItems = [
+  { g: '血液常規造血功能檢查', n: 'WBC', s: '白血球', u: 'cumm', r: '4000-11000', sampleVal: '*', min: 4500, max: 9500, dec: 0 },
+  { g: '', n: 'RBC', s: '紅血球', u: 'm/cumm', r: '男:4.50-6.00<br>女:4.00-5.50', sampleVal: '*', min: 4.10, max: 5.10, dec: 2 },
+  { g: '', n: 'Hb', s: '血色素', u: 'g/dl', r: '男:14.0-18.0<br>女:12.0-16.0', sampleVal: '*', min: 12.5, max: 15.5, dec: 1 },
+  { g: '', n: 'HCT', s: '紅血球容積', u: '%', r: '男:36.0-54.0<br>女:35.0-48.0', sampleVal: '*', min: 37.0, max: 46.0, dec: 1 },
+  { g: '', n: 'MCV', s: '平均紅血球容積', u: 'fL', r: '80~106', sampleVal: '*', min: 82, max: 98, dec: 1 },
+  { g: '', n: 'MCH', s: '平均紅血球血量', u: 'pg', r: '27~34', sampleVal: '*', min: 27.5, max: 33.0, dec: 1 },
+  { g: '', n: 'MCHC', s: '平均紅血球血紅素濃度', u: 'g/dl', r: '31~36', sampleVal: '*', min: 32.0, max: 35.5, dec: 1 },
+  { g: '', n: 'Platelet', s: '血小板', u: 'K/cumm', r: '140~440', sampleVal: '*', min: 180, max: 360, dec: 0 },
+  { g: '', n: 'Neut', s: '嗜中性白血球', u: '%', r: '45~75', sampleVal: '', min: 50, max: 70, dec: 1 },
+  { g: '', n: 'LYM%', s: '淋巴百分比', u: '%', r: '18~45', sampleVal: '', min: 22, max: 40, dec: 1 },
+  { g: '', n: 'MONO%', s: '單核球百分比', u: '%', r: '0~10', sampleVal: '', min: 3, max: 8, dec: 1 },
+  { g: '', n: 'Eosin', s: '嗜酸性白血球', u: '%', r: '0~6', sampleVal: '', min: 0.5, max: 4.5, dec: 1 },
+  { g: '', n: 'Basc', s: '嗜鹼性白血球', u: '%', r: '0~1', sampleVal: '', min: 0.1, max: 0.8, dec: 1 },
+  { g: '', n: 'RDW', s: '血小板平均分佈', u: '%', r: '2~31.0', sampleVal: '', min: 11.5, max: 15.0, dec: 1 },
+  { g: '', n: 'PDW', s: '血小板平均寬度', u: '%', r: '10.0~22.0', sampleVal: '', min: 11.0, max: 17.5, dec: 1 },
+  { g: '', n: 'MPV', s: '平均血小板體積', u: '%', r: '4~13.0', sampleVal: '', min: 7.5, max: 11.0, dec: 1 },
+  { g: '', n: 'PLCR', s: '平均血小板容積', u: '%', r: '10.0~45.0', sampleVal: '', min: 15.0, max: 35.0, dec: 1 },
+  { g: '', n: 'LIC', s: '不成熟細胞', u: '%', r: '0', sampleVal: '', min: 0, max: 0, dec: 0 }
 ];
 
-const $ = id => document.getElementById(id);
-const inputs = {name:$("name"), gender:$("gender"), birth:$("birth"), exam:$("exam")};
-function seedFromString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
-function formatDateTW(v){if(!v)return '　年　月　日';const d=new Date(v+'T00:00:00');return `${d.getFullYear()-1911} 年 ${String(d.getMonth()+1).padStart(2,'0')} 月 ${String(d.getDate()).padStart(2,'0')} 日`}
-function groupInfo(items){const map={};for(let i=0;i<items.length;i++){if(items[i].g){let count=1;for(let j=i+1;j<items.length&&!items[j].g;j++)count++;map[i]={name:items[i].g,count}}}return map}
-function val(item,rand){
-  if(item.f!==undefined) return item.f;
-  if(item.k==='vision'){
-    const r=(0.7+rand()*0.3).toFixed(1), l=(0.7+rand()*0.3).toFixed(1), h=Math.round(156+rand()*14), w=Math.round(48+rand()*17);
-    return `右眼裸 ${r} / 左眼裸 ${l} / 身高 ${h} / 體重 ${w}`;
+// 第一頁右側資料項目
+const p1RightItems = [
+  { g: '總肝功能檢查', n: 'ALK-P', s: '鹼性磷酸酵素', u: 'U/L', r: '35~141', sampleVal: '', min: 45, max: 115, dec: 0 },
+  { g: '', n: 'T-P', s: '總蛋白量', u: 'mg/dl', r: '6.0~8.7', sampleVal: '', min: 6.4, max: 8.0, dec: 1 },
+  { g: '', n: 'ALB', s: '白蛋白量', u: 'mg/dl', r: '3.5~5.5', sampleVal: '', min: 4.0, max: 5.0, dec: 1 },
+  { g: '', n: 'GLO', s: '球蛋白量', u: 'mg/dl', r: '2.0~3.6', sampleVal: '', min: 2.3, max: 3.2, dec: 1 },
+  { g: '', n: 'A/G', s: '白蛋白球蛋白比值', u: '%', r: '1.1~2.5', sampleVal: '', min: 1.30, max: 2.00, dec: 2 },
+  { g: '', n: 'γ-GT', s: '麩胺醯轉移酵素', u: 'U/L', r: '5~50', sampleVal: '', min: 10, max: 35, dec: 0 },
+  { g: '膽功能', n: 'T-Bil', s: '總膽紅素', u: 'mg/dl', r: '0.0~1.5', sampleVal: '', min: 0.3, max: 1.0, dec: 1 },
+  { g: '', n: 'D-Bil', s: '直接膽紅素', u: 'mg/dl', r: '0.0~0.7', sampleVal: '', min: 0.0, max: 0.3, dec: 1 },
+  { g: '胃', n: 'HP', s: '幽門桿菌檢查', u: '+/-', r: '1.2↓(－)', sampleVal: '', min: 0, max: 0, fixedVal: '-' },
+  { g: '心臟功能', n: 'LDH', s: '乳酸脫氫酵素', u: 'U/L', r: '135~225', sampleVal: '', min: 140, max: 210, dec: 0 },
+  { g: '', n: 'CPK', s: '肌酸磷化酵素', u: 'U/L', r: '30~308', sampleVal: '', min: 50, max: 220, dec: 0 },
+  { g: '血管指數', n: 'HDL', s: '高密度膽固醇', u: 'ng/ml', r: '↑30', sampleVal: '', min: 42, max: 65, dec: 0 },
+  { g: '', n: 'LDL', s: '低密度膽固醇', u: 'ng/ml', r: '↓130', sampleVal: '', min: 75, max: 120, dec: 0 },
+  { g: '', n: 'Risk', s: '中風指數', u: '%', r: '1.5~5.5', sampleVal: '', min: 2.0, max: 4.5, dec: 1 },
+  { g: '血清學檢查', n: 'CRP', s: '炎症反應', u: '+/-', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: 'RA', s: '類風濕關節炎', u: '+/-', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: 'H A V . Igm', s: 'A型肝炎', u: '+/-', r: '-未感染<br>+已感染', sampleVal: '', fixedVal: '-未感染' },
+  { g: '', n: 'Widal', s: '傷寒檢查', u: '+/-', r: '陰性(－)', sampleVal: '-', fixedVal: '-' }
+];
+
+// 第二頁左側資料項目
+const p2LeftItems = [
+  { g: '尿液檢查', n: '尿蛋白(Protein)', u: '', r: '陰性(－)', sampleVal: '-', fixedVal: '-' },
+  { g: '', n: '尿潛血(OB)', u: '', r: '陰性(－)', sampleVal: '-', fixedVal: '-' },
+  { g: '', n: '尿 糖(Glucose)', u: '', r: '陰性(－)', sampleVal: '-', fixedVal: '-' },
+  { g: '', n: '酸鹼值(PH)', u: '', r: '5.0 ~ 8.0', sampleVal: '*', min: 5.5, max: 7.5, dec: 1 },
+  { g: '', n: '酮 體(Ket)', u: '', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '腎功能', n: 'SGPT', s: '肝功能檢查', u: 'U/ml', r: '5~42', sampleVal: '*', min: 12, max: 35, dec: 0 },
+  { g: '', n: 'BUN', s: '尿素氮', u: 'mg/dl', r: '4.7~23', sampleVal: '', min: 7.0, max: 18.0, dec: 1 },
+  { g: '', n: 'Creatinine', s: '肌酸酐', u: 'mg/dl', r: '0.1~1.5', sampleVal: '*', min: 0.6, max: 1.1, dec: 1 },
+  { g: '', n: 'Unc Acid', s: '尿酸', u: 'mg/dl', r: '2.0~7.0', sampleVal: '', min: 3.0, max: 6.2, dec: 1 },
+  { g: '血脂肪', n: 'TG', s: '中性脂肪', u: 'mg/dl', r: '30~150', sampleVal: '*', min: 50, max: 130, dec: 0 },
+  { g: '', n: 'T-CHO', s: '總膽固醇', u: 'mg/dl', r: '100~200', sampleVal: '*', min: 130, max: 190, dec: 0 },
+  { g: '血糖', n: 'AC', s: '飯前血糖', u: 'mg/dl', r: '70~110', sampleVal: '*', min: 75, max: 100, dec: 0 },
+  { g: '', n: 'PC', s: '飯後血糖', u: 'mg/dl', r: '90~120', sampleVal: '', min: 95, max: 118, dec: 0 }
+];
+
+// 第二頁右側資料項目
+const p2RightItems = [
+  { g: '', n: '亞硝酸(Nitrite)', u: '', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: '維他命 C', u: '', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: '尿膽紅素(Bil)', u: '', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: '比 重(SP,GR)', u: '', r: '1.000~1.030', sampleVal: '', min: 1.010, max: 1.025, dec: 3 },
+  { g: '', n: '尿膽素原(Uro)', u: '', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { isBanner: true, text: '血 液 檢 查 報 告' },
+  { g: '肝功能檢查', n: 'SGOT', s: '肝功能檢查', u: 'U/ml', r: '5~40', sampleVal: '', min: 12, max: 32, dec: 0 },
+  { g: '肝炎病毒', n: 'B型肝炎表面抗原', u: '+/-', r: '-未帶原<br>+帶原者', sampleVal: '-', fixedVal: '-' },
+  { g: '', n: 'B型肝炎表面抗體', u: '+/-', r: '-無抗體<br>+有抗體', sampleVal: '+', fixedVal: '+' },
+  { g: '', n: 'B型肝炎核心抗體', u: '+/-', r: '陰性(－)', sampleVal: '', fixedVal: '-' },
+  { g: '', n: 'HCV C型肝炎', u: '+/-', r: '-未感染<br>+已感染', sampleVal: '-', fixedVal: '-' },
+  { g: '', n: 'VDRL', s: '梅毒反應', u: '+/-', r: '陰性(－)', sampleVal: '-', fixedVal: '-' },
+  { g: '糞便常規', n: '桿菌性痢疾', u: '', r: '', sampleVal: 'no growth', fixedVal: 'no growth' },
+  { g: '', n: '阿米巴性痢疾', u: '', r: '', sampleVal: 'not found', fixedVal: 'not found' },
+  { g: '', n: '寄生蟲', u: '', r: '', sampleVal: 'not found', fixedVal: 'not found' }
+];
+
+// 計算跨列 (Rowspan)
+function calcGroupRowspan(items) {
+  const map = {};
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].g) {
+      let count = 1;
+      for (let j = i + 1; j < items.length && !items[j].g && !items[j].isBanner; j++) {
+        count++;
+      }
+      map[i] = { name: items[i].g, count };
+    }
   }
-  const v=item.min+(item.max-item.min)*rand();
-  return item.d===0 ? String(Math.round(v)) : v.toFixed(item.d);
+  return map;
 }
-function renderMeta(){['1','2'].forEach(n=>{ $("name"+n).textContent=inputs.name.value.trim(); $("gender"+n).textContent=inputs.gender.value; $("birth"+n).textContent=formatDateTW(inputs.birth.value); $("exam"+n).textContent=formatDateTW(inputs.exam.value); })}
-function build(targetId,left,right,seedText){
-  const tb = $(targetId);
-  tb.innerHTML = '';
 
-  const lg = groupInfo(left);
-  const rg = groupInfo(right);
-  const rand = mulberry32(seedFromString(seedText + targetId));
-  const rows = Math.max(left.length, right.length);
+// 偽隨機數生成器
+function seedFromString(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
 
-  for(let i = 0; i < rows; i++){
-    const l = left[i] || {n:'', s:'', f:'', u:'', r:''};
-    const r = right[i] || {n:'', s:'', f:'', u:'', r:''};
+function mulberry32(a) {
+  return function() {
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+// 取得顯示數值
+function getVal(item, isSampleMode, rand) {
+  if (isSampleMode) {
+    return item.sampleVal !== undefined ? item.sampleVal : '';
+  }
+  if (item.fixedVal) return item.fixedVal;
+  if (item.min !== undefined && item.max !== undefined) {
+    const val = item.min + (item.max - item.min) * rand();
+    return item.dec === 0 ? String(Math.round(val)) : val.toFixed(item.dec);
+  }
+  return item.sampleVal || '';
+}
+
+// 渲染單頁表格
+function renderTable(tbodyId, leftItems, rightItems, isSampleMode, seedText) {
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = '';
+
+  const leftSpanMap = calcGroupRowspan(leftItems);
+  const rightSpanMap = calcGroupRowspan(rightItems);
+  const rand = mulberry32(seedFromString(seedText + tbodyId));
+
+  const maxRows = Math.max(leftItems.length, rightItems.length);
+
+  for (let i = 0; i < maxRows; i++) {
     const tr = document.createElement('tr');
+    const l = leftItems[i];
+    const r = rightItems[i];
 
-    if(lg[i]){
-      const td = document.createElement('td');
-      td.className = 'vcol';
-      td.rowSpan = lg[i].count;
-      td.textContent = lg[i].name;
-      tr.appendChild(td);
+    // ----- 左側部分 -----
+    if (l) {
+      if (leftSpanMap[i]) {
+        const tdG = document.createElement('td');
+        tdG.className = 'vcol';
+        tdG.rowSpan = leftSpanMap[i].count;
+        tdG.innerHTML = leftSpanMap[i].name.split('').join('<br>');
+        tr.appendChild(tdG);
+      } else if (!l.g && i === 0) {
+        const tdG = document.createElement('td');
+        tdG.className = 'vcol';
+        tr.appendChild(tdG);
+      }
+
+      const tdName = document.createElement('td');
+      tdName.innerHTML = `<span class="item-en">${l.n}</span>${l.s ? `<br><span class="item-zh">${l.s}</span>` : ''}`;
+      tr.appendChild(tdName);
+
+      const tdVal = document.createElement('td');
+      const valStr = getVal(l, isSampleMode, rand);
+      tdVal.innerHTML = `<div class="val-cell"><span class="val-num">${valStr}</span><span class="val-unit">${l.u || ''}</span></div>`;
+      tr.appendChild(tdVal);
+
+      const tdRef = document.createElement('td');
+      tdRef.className = 'center';
+      tdRef.innerHTML = l.r || '';
+      tr.appendChild(tdRef);
+    } else {
+      tr.innerHTML += `<td></td><td></td><td></td><td></td>`;
     }
 
-    const l1 = document.createElement('td');
-    l1.innerHTML = `<span class="item">${l.n}</span>${l.s ? `<span class="sub">${l.s}</span>` : ''}`;
+    // ----- 右側部分 -----
+    if (r) {
+      if (r.isBanner) {
+        const tdBanner = document.createElement('td');
+        tdBanner.colSpan = 4;
+        tdBanner.className = 'section-banner';
+        tdBanner.textContent = r.text;
+        tr.appendChild(tdBanner);
+      } else {
+        if (rightSpanMap[i]) {
+          const tdG = document.createElement('td');
+          tdG.className = 'vcol';
+          tdG.rowSpan = rightSpanMap[i].count;
+          tdG.innerHTML = rightSpanMap[i].name.split('').join('<br>');
+          tr.appendChild(tdG);
+        } else if (!r.g && (i === 0 || rightItems[i-1]?.isBanner)) {
+          const tdG = document.createElement('td');
+          tdG.className = 'vcol';
+          tr.appendChild(tdG);
+        }
 
-    const l2 = document.createElement('td');
-    l2.className = 'center';
-    l2.textContent = val(l, rand);
+        const tdName = document.createElement('td');
+        tdName.innerHTML = `<span class="item-en">${r.n}</span>${r.s ? `<br><span class="item-zh">${r.s}</span>` : ''}`;
+        tr.appendChild(tdName);
 
-    const l3 = document.createElement('td');
-    l3.className = 'center';
-    l3.textContent = l.u || '';
+        const tdVal = document.createElement('td');
+        const valStr = getVal(r, isSampleMode, rand);
+        tdVal.innerHTML = `<div class="val-cell"><span class="val-num">${valStr}</span><span class="val-unit">${r.u || ''}</span></div>`;
+        tr.appendChild(tdVal);
 
-    const l4 = document.createElement('td');
-    l4.className = 'center';
-    l4.textContent = l.r || '';
-
-    tr.append(l1, l2, l3, l4);
-
-    if(rg[i]){
-      const td = document.createElement('td');
-      td.className = 'vcol';
-      td.rowSpan = rg[i].count;
-      td.textContent = rg[i].name;
-      tr.appendChild(td);
+        const tdRef = document.createElement('td');
+        tdRef.className = 'center';
+        tdRef.innerHTML = r.r || '';
+        tr.appendChild(tdRef);
+      }
+    } else {
+      tr.innerHTML += `<td></td><td></td><td></td><td></td>`;
     }
 
-    const r1 = document.createElement('td');
-    r1.innerHTML = `<span class="item">${r.n}</span>${r.s ? `<span class="sub">${r.s}</span>` : ''}`;
-
-    const r2 = document.createElement('td');
-    r2.className = 'center';
-    r2.textContent = val(r, rand);
-
-    const r3 = document.createElement('td');
-    r3.className = 'center';
-    r3.textContent = r.u || '';
-
-    const r4 = document.createElement('td');
-    r4.className = 'center';
-    r4.textContent = r.r || '';
-
-    tr.append(r1, r2, r3, r4);
-    tb.appendChild(tr);
+    tbody.appendChild(tr);
   }
 }
-function regenerate(){renderMeta(); const seed=[inputs.name.value,inputs.gender.value,inputs.birth.value,inputs.exam.value].join('|'); build('tbody1',page1Left,page1Right,seed); build('tbody2',page2Left,page2Right,seed+'-2')}
-$('regen').addEventListener('click',regenerate); $('printBtn').addEventListener('click',()=>window.print()); Object.values(inputs).forEach(el=>el.addEventListener('input',renderMeta)); regenerate();
+
+// 更新畫面與資料
+function updateReport() {
+  const name = document.getElementById('name').value;
+  const gender = document.getElementById('gender').value;
+  const code = document.getElementById('code').value;
+  const birth = document.getElementById('birth').value;
+  const exam = document.getElementById('exam').value;
+
+  const isSampleMode = document.getElementById('modeSample').checked;
+
+  // 更新頁面標頭基本資料
+  ['1', '2'].forEach(p => {
+    document.getElementById(`p${p}_name`).textContent = name;
+    document.getElementById(`p${p}_gender`).textContent = gender;
+    document.getElementById(`p${p}_code`).textContent = code;
+    document.getElementById(`p${p}_birth`).textContent = birth;
+    document.getElementById(`p${p}_exam`).textContent = exam;
+  });
+
+  // 更新頁面二頂部表格
+  const rand = mulberry32(seedFromString(name + gender + code));
+  if (isSampleMode) {
+    document.getElementById('p2_sbp').textContent = '*';
+    document.getElementById('p2_dbp').textContent = '*';
+    document.getElementById('p2_pulse').textContent = '*';
+    document.getElementById('p2_bmi').textContent = '*';
+    document.getElementById('p2_r_eye').textContent = '*';
+    document.getElementById('p2_l_eye').textContent = '*';
+    document.getElementById('p2_height').textContent = '*';
+    document.getElementById('p2_weight').textContent = '*';
+  } else {
+    document.getElementById('p2_sbp').textContent = Math.round(105 + rand() * 20);
+    document.getElementById('p2_dbp').textContent = Math.round(65 + rand() * 15);
+    document.getElementById('p2_pulse').textContent = Math.round(68 + rand() * 18);
+    document.getElementById('p2_bmi').textContent = (19 + rand() * 4.5).toFixed(1);
+    document.getElementById('p2_r_eye').textContent = (0.8 + rand() * 0.4).toFixed(1);
+    document.getElementById('p2_l_eye').textContent = (0.8 + rand() * 0.4).toFixed(1);
+    document.getElementById('p2_height').textContent = Math.round(155 + rand() * 20);
+    document.getElementById('p2_weight').textContent = Math.round(48 + rand() * 20);
+  }
+
+  // 渲染表格內容
+  const seedStr = name + gender + code + birth + exam;
+  renderTable('tbody1', p1LeftItems, p1RightItems, isSampleMode, seedStr);
+  renderTable('tbody2', p2LeftItems, p2RightItems, isSampleMode, seedStr + '_p2');
+}
+
+// 事件綁定
+document.getElementById('regenBtn').addEventListener('click', updateReport);
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('modeSample').addEventListener('change', updateReport);
+document.getElementById('modeDynamic').addEventListener('change', updateReport);
+
+['name', 'gender', 'code', 'birth', 'exam'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateReport);
+});
+
+// 初始執行
+updateReport();
 </script>
+
 </body>
 </html>
+```
