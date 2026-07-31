@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -83,7 +85,7 @@
       margin-bottom: 8px;
     }
 
-    /* 按鈕點擊視覺特效 */
+    /* 按鈕點擊特效 */
     button {
       width: 100%;
       padding: 10px 12px;
@@ -135,7 +137,6 @@
       filter: brightness(1.2);
     }
 
-    /* 按鈕點擊波紋漣漪特效 */
     .btn-pulse {
       animation: pulse-effect 0.4s ease-out;
     }
@@ -243,7 +244,7 @@
       font-size: 13px;
     }
 
-    /* 垂直分類欄 - 寬度調整為約 1cm，字體與「胸部X光檢查：無明顯異常」一樣大 (14px 粗體) */
+    /* 垂直大分類欄位樣式 */
     .vcol {
       width: 1cm;
       min-width: 1cm;
@@ -297,7 +298,7 @@
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
-    /* 頁面二頂部綜合表格 (視力檢查欄寬與檢查項目同寬 125px；標題為「檢查數值」跨欄) */
+    /* 頁面二頂部綜合表格 (對齊圖四: 視力檢查左框線與下方「檢查項目」垂直線完全對齊) */
     table.top-grid {
       width: 100%;
       border-collapse: collapse;
@@ -389,7 +390,7 @@
       margin-bottom: 4px;
     }
 
-    /* 醫師章圖檔樣式 (2.5cm * 1cm)，向 A4 中間靠攏 */
+    /* 醫師章圖檔樣式 (2.5cm * 1cm) */
     .stamp-img {
       width: 2.5cm;
       height: 1.0cm;
@@ -423,7 +424,7 @@
       border: 3px double #222;
     }
 
-    /* 徹底消除列印時出現多餘空白頁 (第2頁與第4頁) 的 CSS 修正 */
+    /* 列印媒體樣式 */
     @media print {
       @page {
         size: A4 portrait;
@@ -554,10 +555,10 @@
           <table class="report-table">
             <thead>
               <tr>
-                <th colspan="2" style="width:156px;">檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
                 <th style="width:95px;">標準值</th>
-                <th colspan="2" style="width:156px;">檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
                 <th style="width:95px;">標準值</th>
               </tr>
@@ -568,7 +569,7 @@
           </table>
         </div>
 
-        <!-- 第一頁頁尾：使用 醫師章.png (2.5cm*1cm) 向中間靠攏 -->
+        <!-- 第一頁頁尾 -->
         <div class="footer-section">
           <div>
             <div class="check-list">
@@ -622,22 +623,22 @@
             </div>
           </div>
 
-          <!-- 頁面二頂部綜合表格 -->
+          <!-- 頁面二頂部綜合表格 (對齊圖四: 視力檢查左邊框與下方「檢查項目」垂直邊框線一對一完全對齊) -->
           <table class="top-grid">
             <thead>
               <tr>
                 <th style="width:125px;">檢查項目</th>
-                <th colspan="2" style="width:160px;">檢查數值</th>
-                <th style="width:125px;">視力檢查</th>
-                <th style="width:105px;">身高體重</th>
-                <th style="width:105px;">聽力檢查</th>
+                <th colspan="2" style="width:241px;">檢查數值</th>
+                <th style="width:176px;">視力檢查</th>
+                <th style="width:95px;">身高體重</th>
+                <th style="width:95px;">聽力檢查</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>血壓(收縮壓)</td>
-                <td style="width:105px;">標準值 90-140</td>
-                <td style="width:55px;" class="center" id="p2_sbp">113</td>
+                <td style="width:146px;">標準值 90-140</td>
+                <td style="width:95px;" class="center" id="p2_sbp">113</td>
                 <td>
                   <div class="val-cell">
                     <span>右眼 裸</span>
@@ -679,14 +680,14 @@
             </tbody>
           </table>
 
-          <!-- 頁面二中部主要表格 (修正 VDRL 梅毒反應: 檢查數值為 -，標準值為 +/-) -->
+          <!-- 頁面二中部主要表格 (對齊圖一: 將 VDRL 梅毒反應 精確納入 肝炎病毒 大分類欄內 rowspan="5") -->
           <table class="report-table" style="border-top: none;">
             <thead>
               <tr>
-                <th colspan="2" style="width:156px;">檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
                 <th style="width:95px;">標準值</th>
-                <th colspan="2" style="width:156px;">檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
                 <th style="width:95px;">標準值</th>
               </tr>
@@ -894,7 +895,7 @@ function renderPage1(tbodyId, leftItems, rightItems, seedText, gender) {
   }
 }
 
-// 渲染第二頁表格 (修正 VDRL 梅毒反應: 檢查數值為「-」，標準值為「+/-」)
+// 渲染第二頁表格 (根據圖一: 將 VDRL 梅毒反應 精確納入 肝炎病毒 rowspan="5")
 function renderPage2(tbodyId, seedText, gender) {
   const tbody = document.getElementById(tbodyId);
   tbody.innerHTML = '';
@@ -937,7 +938,7 @@ function renderPage2(tbodyId, seedText, gender) {
   trBanner.innerHTML = `<td colspan="8" class="section-banner">血　液　檢　查　報告</td>`;
   tbody.appendChild(trBanner);
 
-  // --- 中下部資料列 (對齊圖三修正: VDRL 檢查數值為「-」，標準值為「+/-」) ---
+  // --- 中下部資料列 (對齊圖一: 肝炎病毒 rowspan="5" 包含 VDRL 梅毒反應) ---
   const tr1 = document.createElement('tr');
   tr1.innerHTML = `
     <td class="vcol" rowspan="4">腎<br>功<br>能</td>
@@ -950,12 +951,13 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr1);
 
+  // 肝炎病毒 大分類欄 span 5 列 (涵蓋: B肝表面抗原, B肝表面抗體, B肝核心抗體, C肝, 梅毒反應)
   const tr2 = document.createElement('tr');
   tr2.innerHTML = `
     <td><span class="item-name">BUN</span><br><span class="item-sub">尿素氮</span></td>
     <td><div class="val-cell"><span class="val-num"></span><span class="val-unit">mg/dl</span></div></td>
     <td class="center">4.7-23</td>
-    <td class="vcol" rowspan="4">肝<br>炎<br>病<br>毒</td>
+    <td class="vcol" rowspan="5">肝<br>炎<br>病<br>毒</td>
     <td>B型肝炎表面抗原</td>
     <td><div class="val-cell"><span class="val-num">-</span><span class="val-unit">+/-</span></div></td>
     <td class="center">-未帶原<br>+帶原者</td>
@@ -996,15 +998,15 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr5);
 
-  // 修正 VDRL 梅毒反應: 檢查數值為「-」，標準值為「+/-」 (對齊圖三)
+  // 梅毒反應 納入 肝炎病毒 欄中（對齊圖一）
   const tr6 = document.createElement('tr');
   tr6.innerHTML = `
     <td><span class="item-name">T-CHO</span><br><span class="item-sub">總膽固醇</span></td>
     <td><div class="val-cell"><span class="val-num">${tchoVal}</span><span class="val-unit">mg/dl</span></div></td>
     <td class="center">100-200</td>
     <td><span class="item-name">VDRL</span><br><span class="item-sub">梅毒反應</span></td>
-    <td><div class="val-cell"><span class="val-num">-</span></div></td>
-    <td class="center">+/-</td>
+    <td><div class="val-cell"><span class="val-num">-</span><span class="val-unit">+/-</span></div></td>
+    <td class="center">陰性(－)</td>
   `;
   tbody.appendChild(tr6);
 
