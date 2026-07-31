@@ -113,28 +113,31 @@
 
     .sheet {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;
       background: var(--paper);
-      padding: 8mm 10mm 8mm;
+      padding: 10mm 12mm 10mm;
       margin: 0 auto 16px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.12);
       position: relative;
       overflow: hidden;
       color: #000;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     /* 頂部標題列 (灰階漸層與上下邊框) */
     .title-band {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       border-top: 2px solid #333;
       border-bottom: 2px solid #333;
       background: linear-gradient(to bottom, #b5b5b5 0%, #e8e8e8 50%, #b5b5b5 100%);
       text-align: center;
       letter-spacing: 0.4em;
-      font-size: 30px;
-      line-height: 1.15;
-      padding: 2px 0;
+      font-size: 32px;
+      line-height: 1.2;
+      padding: 3px 0;
       font-weight: bold;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
@@ -143,10 +146,10 @@
     .meta-grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
-      gap: 1px 16px;
-      font-size: 13.5px;
-      margin-bottom: 6px;
-      line-height: 1.35;
+      gap: 2px 16px;
+      font-size: 14px;
+      margin-bottom: 8px;
+      line-height: 1.4;
       font-weight: 500;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
@@ -170,21 +173,22 @@
       min-width: 30px;
     }
 
-    /* 表格通用樣式 - 統一標楷體 */
+    /* 表格通用樣式 - 均勻拉高充實 A4 頁面 */
     table.report-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
       border: 2px solid #222;
-      font-size: 12px;
+      font-size: 12.5px;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
+      flex: 1;
     }
 
     table.report-table th, table.report-table td {
       border: 1px solid var(--grid);
-      padding: 2px 3px;
+      padding: 3px 3px;
       vertical-align: middle;
-      line-height: 1.15;
+      line-height: 1.18;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
@@ -192,7 +196,7 @@
       font-weight: bold;
       text-align: center;
       background: var(--th-bg);
-      font-size: 12.5px;
+      font-size: 13px;
     }
 
     /* 垂直分類欄 - 標楷體純字元堆疊 */
@@ -204,8 +208,8 @@
       text-align: center;
       vertical-align: middle;
       font-weight: bold;
-      font-size: 11.5px;
-      line-height: 1.15;
+      font-size: 12px;
+      line-height: 1.18;
       padding: 2px 0 !important;
       word-break: break-all;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
@@ -230,7 +234,7 @@
     .val-unit {
       text-align: right;
       font-style: italic;
-      font-size: 11px;
+      font-size: 11.5px;
       white-space: nowrap;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
@@ -241,7 +245,7 @@
 
     .item-name {
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
-      font-size: 12px;
+      font-size: 12.5px;
     }
 
     .item-sub {
@@ -249,23 +253,24 @@
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
-    /* 頁面二頂部綜合表格 (獨立拆分標準值與檢查數值欄位) */
+    /* 頁面二頂部綜合表格 (與下方主要表格無縫相連) */
     table.top-grid {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
       border: 2px solid #222;
-      margin-bottom: 6px;
-      font-size: 12px;
+      border-bottom: none;
+      margin-bottom: 0;
+      font-size: 12.5px;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
     table.top-grid th, table.top-grid td {
       border: 1px solid var(--grid);
-      padding: 2px 3px;
+      padding: 3px 3px;
       text-align: center;
       vertical-align: middle;
-      line-height: 1.15;
+      line-height: 1.18;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
@@ -274,23 +279,23 @@
       font-weight: bold;
     }
 
-    /* 橫幅分隔標題 (血液檢查報告) - 報與告中間有空格 */
+    /* 橫幅分隔標題 (血液檢查報告) */
     .section-banner {
       background: var(--th-bg);
       font-weight: bold;
       text-align: center;
       letter-spacing: 0.35em;
       border: 1px solid var(--grid);
-      padding: 2px 0;
-      font-size: 12.5px;
+      padding: 3px 0;
+      font-size: 13px;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
     /* 表格內部 Chest X-Ray / Scabies 格子 */
     .xray-cell {
       padding: 6px 8px !important;
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 14.5px;
+      line-height: 1.65;
       font-weight: bold;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
       vertical-align: middle;
@@ -298,17 +303,17 @@
 
     /* 底部區域 */
     .footer-section {
-      margin-top: 6px;
+      margin-top: 10px;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 12px;
       align-items: end;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
     .check-list {
-      font-size: 11px;
-      line-height: 1.5;
+      font-size: 11.5px;
+      line-height: 1.6;
     }
 
     .check-item {
@@ -334,37 +339,37 @@
     }
 
     .legend-text {
-      font-size: 10.5px;
-      line-height: 1.4;
-      margin-top: 3px;
+      font-size: 11px;
+      line-height: 1.45;
+      margin-bottom: 6px;
     }
 
-    .stamp-box {
-      border: 1.5px solid #222;
-      padding: 2px 6px;
-      display: inline-block;
-      margin-top: 5px;
+    /* 圖二：醫師印章 2.5cm * 1cm 紅色邊框框線 */
+    .stamp-box-red {
+      width: 2.5cm;
+      height: 1.0cm;
+      border: 1.8px solid #990000;
+      color: #990000;
+      padding: 1px 3px;
       font-size: 11px;
       line-height: 1.3;
-      background: #fff;
-    }
-
-    .blessing-text {
-      text-align: center;
-      font-family: "KaiTi", "DFKai-SB", "STKaiti", cursive, serif;
-      font-size: 18px;
-      line-height: 1.4;
-      letter-spacing: 0.15em;
-      color: #222;
-      margin-bottom: 6px;
       font-weight: bold;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #fff;
+      font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
+      box-sizing: border-box;
     }
 
     .hospital-box {
       border: 1.5px solid #222;
-      padding: 3px 6px;
+      padding: 4px 6px;
       text-align: center;
-      font-size: 11px;
+      font-size: 11.5px;
       background: #fff;
       font-weight: bold;
     }
@@ -373,33 +378,42 @@
       border: 3px double #222;
     }
 
+    /* 解決列印多跑出空白頁的核心 CSS */
     @media print {
-      body {
-        background: #fff;
+      html, body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: hidden !important;
       }
       .controls {
         display: none !important;
       }
-      .app {
-        display: block;
-      }
-      .stage {
-        padding: 0;
-      }
-      .sheet-stack {
-        width: 100%;
+      .app, .stage, .sheet-stack {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
       }
       .sheet {
-        box-shadow: none;
-        margin: 0;
-        width: 210mm;
-        height: 297mm;
-        padding: 8mm 10mm;
-        page-break-after: always;
-        break-after: page;
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        padding: 10mm 12mm 10mm !important;
+        box-sizing: border-box !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
       }
       .sheet:last-child {
-        page-break-after: auto;
+        page-break-after: auto !important;
+        break-after: auto !important;
       }
       @page {
         size: A4 portrait;
@@ -432,7 +446,8 @@
 <div class="app">
   <!-- 控制側邊欄 -->
   <aside class="controls">
-    <h1>健康檢查報告書</h1
+    <h1>健康檢查報告書</h1>
+    <p>1:1 高度還原傳統灰階健檢報告單樣式。輸入受檢者基本資料後自動產出個人正常範圍數值。</p>
 
     <h2>基本資料編輯</h2>
     <label for="name">姓名</label>
@@ -463,51 +478,53 @@
 
       <!-- ================= 頁面 一 ================= -->
       <section class="sheet" id="page1">
-        <div class="title-band">健 康 檢 查 報 告 書</div>
-        
-        <div class="meta-grid">
-          <div class="meta-line">
-            <span class="meta-label">姓　名：</span>
-            <span class="meta-val" id="p1_name"></span>
+        <div>
+          <div class="title-band">健 康 檢 查 報 告 書</div>
+          
+          <div class="meta-grid">
+            <div class="meta-line">
+              <span class="meta-label">姓　名：</span>
+              <span class="meta-val" id="p1_name"></span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-label">出生年月日期：</span>
+              <span class="meta-val" id="p1_birth"></span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-item">
+                <span class="meta-label">性　別：</span>
+                <span class="meta-val" id="p1_gender">女</span>
+              </span>
+              <span class="meta-item" style="margin-left: 24px;">
+                <span class="meta-label">健康編號：</span>
+                <span class="meta-val" id="p1_code">019</span>
+              </span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-label">受理檢查日期：</span>
+              <span class="meta-val" id="p1_exam">114 年 03 月 25 日</span>
+            </div>
           </div>
-          <div class="meta-line">
-            <span class="meta-label">出生年月日期：</span>
-            <span class="meta-val" id="p1_birth"></span>
-          </div>
-          <div class="meta-line">
-            <span class="meta-item">
-              <span class="meta-label">性　別：</span>
-              <span class="meta-val" id="p1_gender">女</span>
-            </span>
-            <span class="meta-item" style="margin-left: 24px;">
-              <span class="meta-label">健康編號：</span>
-              <span class="meta-val" id="p1_code">019</span>
-            </span>
-          </div>
-          <div class="meta-line">
-            <span class="meta-label">受理檢查日期：</span>
-            <span class="meta-val" id="p1_exam">114 年 03 月 25 日</span>
-          </div>
+
+          <!-- 刪除圖1黃色標註格線：<thead> 使用 colspan="2" -->
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th colspan="2" style="width:160px;">檢查項目</th>
+                <th style="width:95px;">檢查數值</th>
+                <th style="width:95px;">標準值</th>
+                <th colspan="2" style="width:160px;">檢查項目</th>
+                <th style="width:95px;">檢查數值</th>
+                <th style="width:95px;">標準值</th>
+              </tr>
+            </thead>
+            <tbody id="tbody1">
+              <!-- JS 動態生成第一頁內容 -->
+            </tbody>
+          </table>
         </div>
 
-        <table class="report-table">
-          <thead>
-            <tr>
-              <th style="width:22px;"></th>
-              <th style="width:138px;">檢查項目</th>
-              <th style="width:95px;">檢查數值</th>
-              <th style="width:95px;">標準值</th>
-              <th style="width:22px;"></th>
-              <th style="width:138px;">檢查項目</th>
-              <th style="width:95px;">檢查數值</th>
-              <th style="width:95px;">標準值</th>
-            </tr>
-          </thead>
-          <tbody id="tbody1">
-            <!-- JS 動態生成第一頁內容 -->
-          </tbody>
-        </table>
-
+        <!-- 第一頁頁尾：三行說明顯示在右側，電話框上方；電話框採用雙格線；圖二印章以 2.5cm*1cm 放入左側「請進一步到醫院診查治療。」下方 -->
         <div class="footer-section">
           <div>
             <div class="check-list">
@@ -515,8 +532,11 @@
               <div class="check-item"><span class="check-box-empty"></span> 請注意飲食定期追蹤檢查。</div>
               <div class="check-item"><span class="check-box-empty"></span> 請進一步到醫院診查治療。</div>
             </div>
-            
-           
+            <!-- 圖二 2.5cm * 1cm 醫師章 (左側下方) -->
+            <div class="stamp-box-red">
+              <div>醫　字第006393號</div>
+              <div>師　趙　泰</div>
+            </div>
           </div>
 
           <div>
@@ -525,7 +545,7 @@
               藍色表示正常<br>
               紅色表示不在標準範圍內。
             </div>
-              <div class="hospital-box double-border">
+            <div class="hospital-box double-border">
               祥顥醫院健康管理中心：02-29468776
             </div>
           </div>
@@ -534,110 +554,111 @@
 
       <!-- ================= 頁面 二 ================= -->
       <section class="sheet" id="page2">
-        <div class="title-band">健 康 檢 查 報 告 書</div>
+        <div>
+          <div class="title-band">健 康 檢 查 報 告 書</div>
 
-        <div class="meta-grid">
-          <div class="meta-line">
-            <span class="meta-label">姓　名：</span>
-            <span class="meta-val" id="p2_name"></span>
+          <div class="meta-grid">
+            <div class="meta-line">
+              <span class="meta-label">姓　名：</span>
+              <span class="meta-val" id="p2_name"></span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-label">出生年月日期：</span>
+              <span class="meta-val" id="p2_birth"></span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-item">
+                <span class="meta-label">性　別：</span>
+                <span class="meta-val" id="p2_gender">女</span>
+              </span>
+              <span class="meta-item" style="margin-left: 24px;">
+                <span class="meta-label">健康編號：</span>
+                <span class="meta-val" id="p2_code">019</span>
+              </span>
+            </div>
+            <div class="meta-line">
+              <span class="meta-label">受理檢查日期：</span>
+              <span class="meta-val" id="p2_exam">114 年 03 月 25 日</span>
+            </div>
           </div>
-          <div class="meta-line">
-            <span class="meta-label">出生年月日期：</span>
-            <span class="meta-val" id="p2_birth"></span>
-          </div>
-          <div class="meta-line">
-            <span class="meta-item">
-              <span class="meta-label">性　別：</span>
-              <span class="meta-val" id="p2_gender">女</span>
-            </span>
-            <span class="meta-item" style="margin-left: 24px;">
-              <span class="meta-label">健康編號：</span>
-              <span class="meta-val" id="p2_code">019</span>
-            </span>
-          </div>
-          <div class="meta-line">
-            <span class="meta-label">受理檢查日期：</span>
-            <span class="meta-val" id="p2_exam">114 年 03 月 25 日</span>
-          </div>
+
+          <!-- 頁面二頂部綜合表格 (兩大表格無縫相連) -->
+          <table class="top-grid">
+            <thead>
+              <tr>
+                <th style="width:125px;">檢查項目</th>
+                <th style="width:105px;">標準值</th>
+                <th style="width:55px;">檢查數值</th>
+                <th style="width:145px;">視力檢查</th>
+                <th style="width:105px;">身高體重</th>
+                <th style="width:105px;">聽力檢查</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>血壓(收縮壓)</td>
+                <td>標準值 90-140</td>
+                <td class="center" id="p2_sbp">113</td>
+                <td>
+                  <div class="val-cell">
+                    <span>右眼 裸</span>
+                    <span id="p2_r_eye">1.1</span>
+                  </div>
+                </td>
+                <td>身高</td>
+                <td>右耳</td>
+              </tr>
+              <tr>
+                <td>血壓(舒張壓)</td>
+                <td>標準值 60-90</td>
+                <td class="center" id="p2_dbp">71</td>
+                <td>
+                  <div class="val-cell">
+                    <span>左眼 裸</span>
+                    <span id="p2_l_eye">1.2</span>
+                  </div>
+                </td>
+                <td class="center" id="p2_height">158</td>
+                <td id="p2_r_ear">正常</td>
+              </tr>
+              <tr>
+                <td>脈搏指數</td>
+                <td>平均值 60-100</td>
+                <td class="center" id="p2_pulse">74</td>
+                <td>色盲檢查</td>
+                <td>體重</td>
+                <td>左耳</td>
+              </tr>
+              <tr>
+                <td>身體質量指數 BMI</td>
+                <td>平均值 18-24</td>
+                <td class="center" id="p2_bmi">20.3</td>
+                <td id="p2_color">正常</td>
+                <td class="center" id="p2_weight">51</td>
+                <td id="p2_l_ear">正常</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 頁面二中部主要表格 (<thead> 使用 colspan="2" 刪除黃色標註格線；無縫銜接 top-grid) -->
+          <table class="report-table" style="border-top: none;">
+            <thead>
+              <tr>
+                <th colspan="2" style="width:160px;">檢查項目</th>
+                <th style="width:95px;">檢查數值</th>
+                <th style="width:95px;">標準值</th>
+                <th colspan="2" style="width:160px;">檢查項目</th>
+                <th style="width:95px;">檢查數值</th>
+                <th style="width:95px;">標準值</th>
+              </tr>
+            </thead>
+            <tbody id="tbody2">
+              <!-- JS 動態生成第二頁內容 -->
+            </tbody>
+          </table>
         </div>
 
-        <!-- 頁面二頂部綜合表格 (獨立拆分標準值與檢查數值欄位) -->
-        <table class="top-grid">
-          <thead>
-            <tr>
-              <th style="width:125px;">檢查項目</th>
-              <th style="width:105px;">標準值</th>
-              <th style="width:55px;">檢查數值</th>
-              <th style="width:145px;">視力檢查</th>
-              <th style="width:105px;">身高體重</th>
-              <th style="width:105px;">聽力檢查</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>血壓(收縮壓)</td>
-              <td>標準值 90-140</td>
-              <td class="center" id="p2_sbp">113</td>
-              <td>
-                <div class="val-cell">
-                  <span>右眼 裸</span>
-                  <span id="p2_r_eye">1.1</span>
-                </div>
-              </td>
-              <td>身高</td>
-              <td>右耳</td>
-            </tr>
-            <tr>
-              <td>血壓(舒張壓)</td>
-              <td>標準值 60-90</td>
-              <td class="center" id="p2_dbp">71</td>
-              <td>
-                <div class="val-cell">
-                  <span>左眼 裸</span>
-                  <span id="p2_l_eye">1.2</span>
-                </div>
-              </td>
-              <td class="center" id="p2_height">158</td>
-              <td id="p2_r_ear">正常</td>
-            </tr>
-            <tr>
-              <td>脈搏指數</td>
-              <td>平均值 60-100</td>
-              <td class="center" id="p2_pulse">74</td>
-              <td>色盲檢查</td>
-              <td>體重</td>
-              <td>左耳</td>
-            </tr>
-            <tr>
-              <td>身體質量指數 BMI</td>
-              <td>平均值 18-24</td>
-              <td class="center" id="p2_bmi">20.3</td>
-              <td id="p2_color">正常</td>
-              <td class="center" id="p2_weight">51</td>
-              <td id="p2_l_ear">正常</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 頁面二中部主要表格 -->
-        <table class="report-table">
-          <thead>
-            <tr>
-              <th style="width:22px;"></th>
-              <th style="width:138px;">檢查項目</th>
-              <th style="width:95px;">檢查數值</th>
-              <th style="width:95px;">標準值</th>
-              <th style="width:22px;"></th>
-              <th style="width:138px;">檢查項目</th>
-              <th style="width:95px;">檢查數值</th>
-              <th style="width:95px;">標準值</th>
-            </tr>
-          </thead>
-          <tbody id="tbody2">
-            <!-- JS 動態生成第二頁內容 -->
-          </tbody>
-        </table>
-
+        <!-- 第二頁頁尾：圖二印章以 2.5cm*1cm 大小放入說明下方靠左 -->
         <div class="footer-section">
           <div>
             <div class="check-list" style="margin-top:4px;">
@@ -645,11 +666,15 @@
               <div class="check-item"><span class="check-box-empty"></span> 請注意飲食定期追蹤預防檢查。</div>
               <div class="check-item"><span class="check-box-empty"></span> 請進一步到醫院診查治療。</div>
             </div>
-            <div class="legend-text">
+            <div class="legend-text" style="margin-top:4px;">
               ▲空白表示未檢查、藍色表示正常。<br>
               ▼紅色表示不在標準範圍內、應加注意。
             </div>
-          
+            <!-- 圖二 2.5cm * 1cm 醫師章 (左側說明下方靠左) -->
+            <div class="stamp-box-red">
+              <div>醫　字第006393號</div>
+              <div>師　趙　泰</div>
+            </div>
           </div>
 
           <div>
@@ -847,7 +872,7 @@ function renderPage2(tbodyId, seedText, gender) {
   const tchoVal = String(Math.round(135 + rand() * 50));
   const acVal = String(Math.round(78 + rand() * 20));
 
-  // --- 頂部 5 列 (刪除檢查項目前的多餘窄欄) ---
+  // --- 頂部 5 列 (刪除圖1黃色標註格線) ---
   const top5 = [
     { lName: '尿　蛋　白 (Protein)', lVal: '-', lRef: '陰性(－)', rName: '亞　硝　酸 (Nitrite)', rVal: '', rRef: '陰性(－)' },
     { lName: '尿　潛　血 (OB)', lVal: '-', lRef: '陰性(－)', rName: '維他命 C', rVal: '', rRef: '陰性(－)' },
@@ -915,6 +940,7 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr3);
 
+  // 指定 B型肝炎核心抗體 固定產生結果 「+」
   const tr4 = document.createElement('tr');
   tr4.innerHTML = `
     <td><span class="item-name">Unc Acid</span><br><span class="item-sub">尿酸</span></td>
