@@ -73,7 +73,7 @@
       font-weight: bold;
     }
 
-    input, select, button {
+    input, select {
       width: 100%;
       padding: 6px 8px;
       border: 1px solid #b8afa2;
@@ -83,22 +83,70 @@
       margin-bottom: 8px;
     }
 
+    /* 按鈕點擊視覺特效 */
     button {
-      background: #232323;
-      color: #fff;
+      width: 100%;
+      padding: 10px 12px;
       border: none;
       font-weight: 700;
       cursor: pointer;
-      padding: 8px;
-      margin-top: 4px;
+      font-size: 14px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+      user-select: none;
     }
 
-    button:hover {
-      background: #444;
+    #regenBtn {
+      background: linear-gradient(135deg, #2b2b2b 0%, #111111 100%);
+      color: #ffffff;
+    }
+
+    #regenBtn:hover {
+      background: linear-gradient(135deg, #3d3d3d 0%, #222222 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+    }
+
+    #regenBtn:active {
+      transform: translateY(1px) scale(0.97);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      filter: brightness(1.2);
     }
 
     button.alt {
-      background: #60584c;
+      background: linear-gradient(135deg, #6b6154 0%, #4f473c 100%);
+      color: #ffffff;
+    }
+
+    button.alt:hover {
+      background: linear-gradient(135deg, #7c7264 0%, #5f564a 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+    }
+
+    button.alt:active {
+      transform: translateY(1px) scale(0.97);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      filter: brightness(1.2);
+    }
+
+    /* 按鈕點擊波紋漣漪特效 */
+    .btn-pulse {
+      animation: pulse-effect 0.4s ease-out;
+    }
+
+    @keyframes pulse-effect {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+      }
+      100% {
+        box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+      }
     }
 
     .stage {
@@ -195,16 +243,16 @@
       font-size: 13px;
     }
 
-    /* 垂直分類欄 - 寬度條窄 (18px)，字體加大 (13.5px 粗體) */
+    /* 垂直分類欄 - 寬度調整為約 1cm，字體與「胸部X光檢查：無明顯異常」一樣大 (14px 粗體) */
     .vcol {
-      width: 18px;
-      min-width: 18px;
-      max-width: 18px;
+      width: 1cm;
+      min-width: 1cm;
+      max-width: 1cm;
       background: var(--vcol-bg);
       text-align: center;
       vertical-align: middle;
       font-weight: bold;
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.15;
       padding: 2px 0 !important;
       word-break: break-all;
@@ -249,7 +297,7 @@
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
-    /* 頁面二頂部綜合表格 (視力檢查欄寬與檢查項目一樣寬 125px；標題為「檢查數值」跨欄) */
+    /* 頁面二頂部綜合表格 (視力檢查欄寬與檢查項目同寬 125px；標題為「檢查數值」跨欄) */
     table.top-grid {
       width: 100%;
       border-collapse: collapse;
@@ -307,7 +355,7 @@
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
-    /* 放大下方文字字體 */
+    /* 下方說明字體 */
     .check-list {
       font-size: 13.5px;
       line-height: 1.55;
@@ -341,13 +389,14 @@
       margin-bottom: 4px;
     }
 
-    /* 醫師章圖檔樣式 (2.5cm * 1cm) */
+    /* 醫師章圖檔樣式 (2.5cm * 1cm)，向 A4 中間靠攏 */
     .stamp-img {
       width: 2.5cm;
       height: 1.0cm;
       object-fit: contain;
       display: block;
       margin-top: 4px;
+      margin-left: 45px;
     }
 
     .blessing-text {
@@ -374,41 +423,46 @@
       border: 3px double #222;
     }
 
+    /* 徹底消除列印時出現多餘空白頁 (第2頁與第4頁) 的 CSS 修正 */
     @media print {
-      body {
-        background: #fff;
+      @page {
+        size: A4 portrait;
+        margin: 0 !important;
+      }
+      html, body {
+        width: 210mm !important;
+        height: 296mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: hidden !important;
       }
       .controls {
         display: none !important;
       }
-      .app {
-        display: block;
-      }
-      .stage {
-        padding: 0;
-      }
-      .sheet-stack {
-        width: 100%;
+      .app, .stage, .sheet-stack {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
       }
       .sheet {
-        box-shadow: none;
-        margin: 0;
-        width: 210mm;
-        height: 297mm;
-        max-height: 297mm;
-        padding: 8mm 10mm;
-        page-break-after: always;
-        break-after: page;
-        box-sizing: border-box;
-        overflow: hidden;
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 210mm !important;
+        height: 296mm !important;
+        max-height: 296mm !important;
+        padding: 8mm 10mm !important;
+        box-sizing: border-box !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
       }
       .sheet:last-child {
-        page-break-after: auto;
-        break-after: auto;
-      }
-      @page {
-        size: A4 portrait;
-        margin: 0;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
     }
 
@@ -514,7 +568,7 @@
           </table>
         </div>
 
-        <!-- 第一頁頁尾：貼合表格底部，使用 醫師章.png (2.5cm*1cm) -->
+        <!-- 第一頁頁尾：使用 醫師章.png (2.5cm*1cm) 向中間靠攏 -->
         <div class="footer-section">
           <div>
             <div class="check-list">
@@ -522,7 +576,6 @@
               <div class="check-item"><span class="check-box-empty"></span> 請注意飲食定期追蹤檢查。</div>
               <div class="check-item"><span class="check-box-empty"></span> 請進一步到醫院診查治療。</div>
             </div>
-            <!-- 使用 github 醫師章.png 檔檔 (2.5cm * 1cm) -->
             <img src="醫師章.png" alt="醫師章" class="stamp-img" />
           </div>
 
@@ -569,7 +622,7 @@
             </div>
           </div>
 
-          <!-- 頁面二頂部綜合表格 (對齊圖三: 標題為「檢查數值」跨欄；「視力檢查」欄寬與「檢查項目」同寬 125px) -->
+          <!-- 頁面二頂部綜合表格 -->
           <table class="top-grid">
             <thead>
               <tr>
@@ -626,7 +679,7 @@
             </tbody>
           </table>
 
-          <!-- 頁面二中部主要表格 (對齊圖五: SGOT 往前跨欄 colspan="2"，刪除多餘灰格子) -->
+          <!-- 頁面二中部主要表格 (修正 VDRL 梅毒反應: 檢查數值為 -，標準值為 +/-) -->
           <table class="report-table" style="border-top: none;">
             <thead>
               <tr>
@@ -644,7 +697,7 @@
           </table>
         </div>
 
-        <!-- 第二頁頁尾：貼合表格底部，使用 醫師章.png 放在說明下方靠左 -->
+        <!-- 第二頁頁尾 -->
         <div class="footer-section">
           <div>
             <div class="check-list" style="margin-top:4px;">
@@ -656,7 +709,6 @@
               ▲空白表示未檢查、藍色表示正常。<br>
               ▼紅色表示不在標準範圍內、應加注意。
             </div>
-            <!-- 使用 github 醫師章.png 檔檔 (2.5cm * 1cm) -->
             <img src="醫師章.png" alt="醫師章" class="stamp-img" />
           </div>
 
@@ -842,7 +894,7 @@ function renderPage1(tbodyId, leftItems, rightItems, seedText, gender) {
   }
 }
 
-// 渲染第二頁表格 (對齊圖三與圖五: SGOT 往前跨欄合併，無多餘灰格子)
+// 渲染第二頁表格 (修正 VDRL 梅毒反應: 檢查數值為「-」，標準值為「+/-」)
 function renderPage2(tbodyId, seedText, gender) {
   const tbody = document.getElementById(tbodyId);
   tbody.innerHTML = '';
@@ -885,7 +937,7 @@ function renderPage2(tbodyId, seedText, gender) {
   trBanner.innerHTML = `<td colspan="8" class="section-banner">血　液　檢　查　報告</td>`;
   tbody.appendChild(trBanner);
 
-  // --- 中下部資料列 (對齊圖五: SGOT 往前跨欄 colspan="2"，刪除多餘灰格子) ---
+  // --- 中下部資料列 (對齊圖三修正: VDRL 檢查數值為「-」，標準值為「+/-」) ---
   const tr1 = document.createElement('tr');
   tr1.innerHTML = `
     <td class="vcol" rowspan="4">腎<br>功<br>能</td>
@@ -921,7 +973,6 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr3);
 
-  // 指定 B型肝炎核心抗體 固定產生結果 「+」
   const tr4 = document.createElement('tr');
   tr4.innerHTML = `
     <td><span class="item-name">Unc Acid</span><br><span class="item-sub">尿酸</span></td>
@@ -945,14 +996,15 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr5);
 
+  // 修正 VDRL 梅毒反應: 檢查數值為「-」，標準值為「+/-」 (對齊圖三)
   const tr6 = document.createElement('tr');
   tr6.innerHTML = `
     <td><span class="item-name">T-CHO</span><br><span class="item-sub">總膽固醇</span></td>
     <td><div class="val-cell"><span class="val-num">${tchoVal}</span><span class="val-unit">mg/dl</span></div></td>
     <td class="center">100-200</td>
     <td><span class="item-name">VDRL</span><br><span class="item-sub">梅毒反應</span></td>
-    <td><div class="val-cell"><span class="val-num">-</span><span class="val-unit">+/-</span></div></td>
-    <td class="center">陰性(－)</td>
+    <td><div class="val-cell"><span class="val-num">-</span></div></td>
+    <td class="center">+/-</td>
   `;
   tbody.appendChild(tr6);
 
@@ -991,6 +1043,13 @@ function renderPage2(tbodyId, seedText, gender) {
     <td class="center"></td>
   `;
   tbody.appendChild(tr9);
+}
+
+// 觸發按鈕動畫波紋
+function animateButton(btn) {
+  btn.classList.remove('btn-pulse');
+  void btn.offsetWidth; // 強制重繪
+  btn.classList.add('btn-pulse');
 }
 
 // 更新畫面與數據
@@ -1032,8 +1091,15 @@ function updateReport() {
 }
 
 // 事件綁定
-document.getElementById('regenBtn').addEventListener('click', updateReport);
-document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('regenBtn').addEventListener('click', function() {
+  animateButton(this);
+  updateReport();
+});
+
+document.getElementById('printBtn').addEventListener('click', function() {
+  animateButton(this);
+  setTimeout(() => window.print(), 150);
+});
 
 ['name', 'gender', 'code', 'birth', 'exam'].forEach(id => {
   document.getElementById(id).addEventListener('input', updateReport);
