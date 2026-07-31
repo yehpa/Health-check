@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -82,7 +83,7 @@
       margin-bottom: 8px;
     }
 
-    /* 按鈕點擊特效 */
+    /* 按鈕點擊視覺特效 */
     button {
       width: 100%;
       padding: 10px 12px;
@@ -241,7 +242,7 @@
       font-size: 13px;
     }
 
-    /* 垂直大分類欄位 (.vcol)：修改 width 即可直接控制欄寬！ */
+    /* 垂直大分類欄 (.vcol) */
     .vcol {
       width: 1cm !important;
       min-width: 1cm !important;
@@ -295,7 +296,7 @@
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
-    /* 頁面二頂部綜合表格 (視力檢查左框線與下方「檢查項目」垂直線完全對齊) */
+    /* 頁面二頂部綜合表格 (對齊圖一與圖二: 100% 與下方 report-table 左框線與右框線對齊) */
     table.top-grid {
       width: 100%;
       border-collapse: collapse;
@@ -343,13 +344,13 @@
       vertical-align: middle;
     }
 
-    /* 底部區域：緊貼表格底部 */
+    /* 底部區域：緊貼表格底部，零間隙 */
     .footer-section {
-      margin-top: 6px;
+      margin-top: 2px;
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 10px;
-      align-items: end;
+      align-items: start;
       font-family: "DFKai-SB", "BiauKai", "KaiTi", "STKaiti", serif;
     }
 
@@ -379,6 +380,15 @@
       height: 11px;
       background: #fff;
       border: 1px solid #333;
+    }
+
+    /* 第一頁圖三說明：緊貼表格底部，消除空隙 */
+    .legend-text-p1 {
+      font-size: 12.5px;
+      line-height: 1.45;
+      margin-top: 0;
+      margin-bottom: 4px;
+      padding-top: 0;
     }
 
     .legend-text {
@@ -421,7 +431,7 @@
       border: 3px double #222;
     }
 
-    /* 列印媒體樣式 */
+    /* 確保列印畫面精確預覽並列印 2 頁 A4 */
     @media print {
       @page {
         size: A4 portrait;
@@ -429,11 +439,11 @@
       }
       html, body {
         width: 210mm !important;
-        height: 296mm !important;
+        height: auto !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #fff !important;
-        overflow: hidden !important;
+        overflow: visible !important;
       }
       .controls {
         display: none !important;
@@ -448,8 +458,8 @@
         box-shadow: none !important;
         margin: 0 !important;
         width: 210mm !important;
-        height: 296mm !important;
-        max-height: 296mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
         padding: 8mm 10mm !important;
         box-sizing: border-box !important;
         page-break-after: always !important;
@@ -459,8 +469,8 @@
         overflow: hidden !important;
       }
       .sheet:last-child {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
+        page-break-after: auto !important;
+        break-after: auto !important;
       }
     }
 
@@ -549,17 +559,16 @@
             </div>
           </div>
 
+          <!-- 對齊圖五：刪除表頭多餘黃筆格線，<th colspan="2">檢查項目</th> 前移並在欄位中置中 -->
           <table class="report-table">
             <thead>
               <tr>
-                <th class="vcol"></th>
-                <th>檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
-                <th style="width:95px;">標準值</th>
-                <th class="vcol"></th>
-                <th>檢查項目</th>
+                <th style="width:88px;">標準值</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
-                <th style="width:95px;">標準值</th>
+                <th style="width:88px;">標準值</th>
               </tr>
             </thead>
             <tbody id="tbody1">
@@ -568,7 +577,7 @@
           </table>
         </div>
 
-        <!-- 第一頁頁尾 -->
+        <!-- 第一頁頁尾：圖三說明緊貼表格底部，消除任何空隙 -->
         <div class="footer-section">
           <div>
             <div class="check-list">
@@ -580,7 +589,7 @@
           </div>
 
           <div>
-            <div class="legend-text">
+            <div class="legend-text-p1">
               空白表示未檢查<br>
               藍色表示正常<br>
               紅色表示不在標準範圍內。
@@ -622,22 +631,23 @@
             </div>
           </div>
 
-          <!-- 頁面二頂部綜合表格 (對齊圖四: 視力檢查左邊框與下方「檢查項目」垂直邊框線一對一完全對齊) -->
+          <!-- 頁面二頂部綜合表格 (紅筆: 視力檢查左框線與下方「檢查項目」垂直線1:1完全切齊對齊；藍筆: 最右框線完全切齊) -->
           <table class="top-grid">
             <thead>
               <tr>
-                <th style="width:125px;">檢查項目</th>
-                <th colspan="2" style="width:241px;">檢查數值</th>
+                <th style="width:138px;">檢查項目</th>
+                <th style="width:126px;">標準值</th>
+                <th style="width:95px;">檢查數值</th>
                 <th style="width:176px;">視力檢查</th>
                 <th style="width:95px;">身高體重</th>
-                <th style="width:95px;">聽力檢查</th>
+                <th style="width:88px;">聽力檢查</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>血壓(收縮壓)</td>
-                <td style="width:146px;">標準值 90-140</td>
-                <td style="width:95px;" class="center" id="p2_sbp">113</td>
+                <td>標準值 90-140</td>
+                <td class="center" id="p2_sbp">113</td>
                 <td>
                   <div class="val-cell">
                     <span>右眼 裸</span>
@@ -679,18 +689,16 @@
             </tbody>
           </table>
 
-          <!-- 頁面二中部主要表格 (對齊圖一: 將 VDRL 梅毒反應 精確納入 肝炎病毒 大分類欄內 rowspan="5") -->
+          <!-- 頁面二中部主要表格 (黃筆: <th colspan="2">檢查項目</th> 刪除多餘格線並前移置中；對齊圖一: 將 VDRL 梅毒反應 精確納入 肝炎病毒 大分類欄內 rowspan="5") -->
           <table class="report-table" style="border-top: none;">
             <thead>
               <tr>
-                <th class="vcol"></th>
-                <th>檢查項目</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
-                <th style="width:95px;">標準值</th>
-                <th class="vcol"></th>
-                <th>檢查項目</th>
+                <th style="width:88px;">標準值</th>
+                <th colspan="2" style="width:176px;">檢查項目</th>
                 <th style="width:95px;">檢查數值</th>
-                <th style="width:95px;">標準值</th>
+                <th style="width:88px;">標準值</th>
               </tr>
             </thead>
             <tbody id="tbody2">
@@ -896,7 +904,7 @@ function renderPage1(tbodyId, leftItems, rightItems, seedText, gender) {
   }
 }
 
-// 渲染第二頁表格 (根據圖一: 將 VDRL 梅毒反應 精確納入 肝炎病毒 rowspan="5")
+// 渲染第二頁表格 (將 VDRL 梅毒反應 精確納入 肝炎病毒 rowspan="5")
 function renderPage2(tbodyId, seedText, gender) {
   const tbody = document.getElementById(tbodyId);
   tbody.innerHTML = '';
@@ -952,7 +960,7 @@ function renderPage2(tbodyId, seedText, gender) {
   `;
   tbody.appendChild(tr1);
 
-  // 肝炎病毒 大分類欄 span 5 列 (涵蓋: B肝表面抗原, B肝表面抗體, B肝核心抗體, C肝, 梅毒反應)
+  // 肝炎病毒 大分類欄 span 5 列
   const tr2 = document.createElement('tr');
   tr2.innerHTML = `
     <td><span class="item-name">BUN</span><br><span class="item-sub">尿素氮</span></td>
